@@ -40,11 +40,12 @@ go build (my-structs.go my-funcs.go main.go) -o "myApp.exe"
 |```my-funcs.go```|App Functions|
 |```main.go```|Main()|
 
-### Go Packages
+### Additional Go Packages
 
 | package | install | about |
 | --- | --- | --- |
-|[gocui](https://github.com/jroimartin/gocui) | ```go get github.com/jroimartin/gocui``` | Go package aimed at creating Console User Interfaces. It is tput-like/curses-like |
+|[gocui.git](https://github.com/jroimartin/gocui)| ```go get github.com/jroimartin/gocui``` | Go package aimed at creating Console User Interfaces. It is tput-like/curses-like |
+| [godoc.org](https://godoc.org/github.com/jroimartin/gocui) |```go doc github.com/jroimartin/gocui``` | Documentation
 
 ---
 
