@@ -2,8 +2,8 @@
 dependencies:
 	my-structs.go
 	my-funcs.go
-run: go run my-structs.go my-funcs.go main.go
-build: go build (my-structs.go my-funcs.go main.go) -o "myApp.exe" */
+run: go run my-structs.go my-funcs.go main2.go
+build: go build (my-structs.go my-funcs.go main2.go) -o "myApp.exe" */
 
 package main
 
@@ -16,7 +16,7 @@ import (
 func main() {
 
 	// Open a jsonFile
-	var jsonPath string = "json/rosaryJSON-nab.json"
+	var jsonPath string = "../json/rosaryJSON-nab.json"
 	var byteValue []byte = returnByteValue(jsonPath)
 
 	// Make a struct DB from a json file
@@ -39,10 +39,11 @@ func main() {
 	json.Unmarshal(byteValue, &messages)
 	json.Unmarshal(byteValue, &prayers)
 
+	// Main Loop
+
 	var weekdayNo int = int(time.Now().Weekday())
 	var accumulator int = returnStartPosition(weekdayNo)
 
-	// Main Loop
 	for accumulator < 315 {
 		cls() // clear terminal screen
 
