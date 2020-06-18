@@ -61,7 +61,7 @@ mkdir ~/go/bin, ~/go/src
 setx PATH "$($env:path);$GOPATH\bin"
 ```
 
-#### Make personal Go packages
+## Make personal Go packages
 
 ```sh
 ## Create future projects in the following directory structure
@@ -71,4 +71,12 @@ $GOPATH/src/github.com/<user-name>/<project-name>
 #### Import a Github published Go app into another Go project
 ```go
 go get github.com/<user-name>/<project-name>
+```
+
+#### Make binaries
+```sh
+cd $GOPATH/src/github.com/<user-name>/<project-name>
+
+go install
+go build
 ```

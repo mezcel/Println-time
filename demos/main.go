@@ -1,4 +1,5 @@
-/** file: main2.go */
+/** file	: main.go
+dependencies: go get github.com/mezcel/struct-fmt */
 
 package main
 
@@ -6,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
 	structfmt "github.com/mezcel/struct-fmt"
 )
 

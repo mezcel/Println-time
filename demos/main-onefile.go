@@ -1,4 +1,4 @@
-/** file: myApp.go
+/** file: main-onefile.go
 run: go run myApp.go
 build: go build myApp.go -o "myApp.exe" */
 
