@@ -1,6 +1,6 @@
-/* my-structs.go */
+/* structs.go */
 
-package structfmt
+package myStruct
 
 // ER Classes
 

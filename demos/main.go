@@ -1,29 +1,31 @@
 /** file: main2.go */
 
-package source
+package main
 
 import (
 	"encoding/json"
 	"fmt"
 	"time"
+	myStruct "github.com/mezcel/struct-fmt"
+	myfunc "github.com/mezcel/struct-fmt"
 )
 
 func main() {
 
 	// Open a jsonFile
 	var jsonPath string = "json/rosaryJSON-nab.json"
-	var byteValue []byte = ReturnByteValue(jsonPath)
+	var byteValue []byte = myfunc.ReturnByteValue(jsonPath)
 
 	// Make a struct DB from a json file
 
-	var rosaryBeads RosaryBeads
-	var beads Beads
-	var decades Decades
-	var mysterys Mysterys
-	var books Books
-	var scriptures Scriptures
-	var messages Messages
-	var prayers Prayers
+	var rosaryBeads myStruct.RosaryBeads
+	var beads myStruct.Beads
+	var decades myStruct.Decades
+	var mysterys myStruct.Mysterys
+	var books myStruct.Books
+	var scriptures myStruct.Scriptures
+	var messages myStruct.Messages
+	var prayers myStruct.Prayers
 
 	json.Unmarshal(byteValue, &rosaryBeads)
 	json.Unmarshal(byteValue, &beads)
@@ -37,10 +39,10 @@ func main() {
 	// Main Loop
 
 	var weekdayNo int = int(time.Now().Weekday())
-	var accumulator int = ReturnStartPosition(weekdayNo)
+	var accumulator int = myfunc.ReturnStartPosition(weekdayNo)
 
 	for accumulator < 315 {
-		Cls() // clear terminal screen
+		myfunc.Cls() // clear terminal screen
 
 		// position progress step increment
 		accumulator++
