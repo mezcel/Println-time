@@ -52,7 +52,10 @@ mkdir -p $HOME/go{bin,src}
 ## Set local environment variables (obsolete, but still good practice)
 
 ## Run Go apps anywhere on system
-echo 'export $GOPATH=$HOME/go' >> ~/.profile
+## also make aliases in .bashrc or .zshrc, .profile, ect.
+
+echo -e "\n## Go Workspace Environment Variable Alias\n" >> ~/.profile
+echo 'export GOPATH=$HOME/go' >> ~/.profile
 
 ## Make Go tools available on system
 echo 'export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin' >> ~/.profile
