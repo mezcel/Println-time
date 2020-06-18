@@ -1,6 +1,6 @@
 /* functions.go */
 
-package myfunc
+package structfmt
 
 import (
 	"fmt"

@@ -6,26 +6,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
-	myStruct "github.com/mezcel/struct-fmt"
-	myfunc "github.com/mezcel/struct-fmt"
+	structfmt "github.com/mezcel/struct-fmt"
 )
 
 func main() {
 
 	// Open a jsonFile
 	var jsonPath string = "json/rosaryJSON-nab.json"
-	var byteValue []byte = myfunc.ReturnByteValue(jsonPath)
+	var byteValue []byte = structfmt.ReturnByteValue(jsonPath)
 
 	// Make a struct DB from a json file
 
-	var rosaryBeads myStruct.RosaryBeads
-	var beads myStruct.Beads
-	var decades myStruct.Decades
-	var mysterys myStruct.Mysterys
-	var books myStruct.Books
-	var scriptures myStruct.Scriptures
-	var messages myStruct.Messages
-	var prayers myStruct.Prayers
+	var rosaryBeads structfmt.RosaryBeads
+	var beads structfmt.Beads
+	var decades structfmt.Decades
+	var mysterys structfmt.Mysterys
+	var books structfmt.Books
+	var scriptures structfmt.Scriptures
+	var messages structfmt.Messages
+	var prayers structfmt.Prayers
 
 	json.Unmarshal(byteValue, &rosaryBeads)
 	json.Unmarshal(byteValue, &beads)
@@ -39,10 +38,10 @@ func main() {
 	// Main Loop
 
 	var weekdayNo int = int(time.Now().Weekday())
-	var accumulator int = myfunc.ReturnStartPosition(weekdayNo)
+	var accumulator int = structfmt.ReturnStartPosition(weekdayNo)
 
 	for accumulator < 315 {
-		myfunc.Cls() // clear terminal screen
+		structfmt.Cls() // clear terminal screen
 
 		// position progress step increment
 		accumulator++
