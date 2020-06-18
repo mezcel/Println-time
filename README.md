@@ -24,21 +24,13 @@ go get github.com/jroimartin/gocui
 
 ```go
 // Run
-go run my-structs.go my-funcs.go main.go
+go run main.go
 
 // Build as an Exe
-go build (my-structs.go my-funcs.go main.go) -o "myApp.exe"
+go build main.go -o "myApp.exe"
 ```
 
 ## Dependencies
-
-### App Scripts:
-
-| script name | about |
-| --- | --- |
-|```my-structs.go```|Json Structs|
-|```my-funcs.go```|App Functions|
-|```main.go```|Main()|
 
 ### Additional Go Packages
 

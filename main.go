@@ -1,17 +1,166 @@
-/** file: main.go
-dependencies:
-	my-structs.go
-	my-funcs.go
-run: go run my-structs.go my-funcs.go main.go
-build: go build (my-structs.go my-funcs.go main.go) -o "myApp.exe" */
+/** file: myApp.go
+run: go run myApp.go
+build: go build myApp.go -o "myApp.exe" */
 
 package main
 
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
+	"os/exec"
 	"time"
 )
+
+// Structs
+
+type RosaryBead struct {
+	RosaryBeadID     int `json:"rosaryBeadID"`
+	BeadIndex        int `json:"beadIndex"`
+	DecadeIndex      int `json:"decadeIndex"`
+	MysteryIndex     int `json:"mysteryIndex"`
+	PrayerIndex      int `json:"prayerIndex"`
+	ScriptureIndex   int `json:"scriptureIndex"`
+	MessageIndex     int `json:"messageIndex"`
+	LoopBody         int `json:"loopBody"`
+	SmallbeadPercent int `json:"smallbeadPercent"`
+	MysteryPercent   int `json:"mysteryPercent"`
+}
+
+type Bead struct {
+	BeadID   int    `json:"beadID"`
+	BeadType string `json:"beadType"`
+}
+
+type Decade struct {
+	DecadeID       int    `json:"beadID"`
+	MysteryIndex   int    `json:"mysteryIndex"`
+	DecadeNo       int    `json:"decadeNo"`
+	DecadeName     string `json:"decadeName"`
+	DecadeInfo     string `json:"decadeInfo"`
+	InfoRefference string `json:"infoRefference"`
+}
+
+type Mystery struct {
+	MysteryID   int    `json:"mysteryID"`
+	MysteryNo   int    `json:"mysteryNo"`
+	MysteryName string `json:"mysteryName"`
+}
+
+type Book struct {
+	BookID   int    `json:"bookID"`
+	BookName string `json:"bookName"`
+}
+
+type Scripture struct {
+	ScriptureID   int    `json:"scriptureID"`
+	BookIndex     int    `json:"bookIndex"`
+	ChapterIndex  int    `json:"chapterIndex"`
+	VerseIndex    int    `json:"verseIndex"`
+	ScriptureText string `json:"scriptureText"`
+}
+
+type Message struct {
+	MessageID  int    `json:"messageID"`
+	MesageText string `json:"mesageText"`
+}
+
+type Prayer struct {
+	PrayerID   int    `json:"prayerID"`
+	PrayerName string `json:"prayerName"`
+	PrayerText string `json:"prayerText"`
+}
+
+// ER DB
+
+type RosaryBeads struct {
+	RosaryBeads []RosaryBead `json:"rosaryBead"`
+}
+
+type Beads struct {
+	Beads []Bead `json:"bead"`
+}
+
+type Decades struct {
+	Decades []Decade `json:"decade"`
+}
+
+type Mysterys struct {
+	Mysterys []Mystery `json:"mystery"`
+}
+
+type Books struct {
+	Books []Book `json:"book"`
+}
+
+type Scriptures struct {
+	Scriptures []Scripture `json:"scripture"`
+}
+
+type Messages struct {
+	Messages []Message `json:"message"`
+}
+
+type Prayers struct {
+	Prayers []Prayer `json:"prayer"`
+}
+
+func cls() {
+	// clear screen in Win10
+
+	c := exec.Command("cmd", "/c", "cls")
+	c.Stdout = os.Stdout
+	c.Run()
+}
+
+// Functions / Methods
+
+func returnByteValue(jsonPath string) []byte {
+	// Import and return json file
+
+	jsonFile, err := os.Open(jsonPath)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println("Successfully Opened users.json")
+	defer jsonFile.Close()
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	return byteValue
+}
+
+func returnStartPosition(weekdayNo int) int {
+	var positionNo int = 0
+	//var weekdayNo int = int(time.Now().Weekday())
+
+	switch weekdayNo {
+	case 0: // Sunday
+		positionNo = 237
+		break
+	case 1: // Monday
+	case 5: // Saturday
+		positionNo = 0
+		break
+	case 2: // Tuesday
+	case 6: // Friday
+		positionNo = 158
+		break
+	case 3: // Wednesday
+		positionNo = 237
+		break
+	case 4: // Thursday
+		positionNo = 79
+		break
+	}
+
+	return positionNo
+}
+
+// Main
 
 func main() {
 
