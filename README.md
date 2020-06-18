@@ -2,8 +2,8 @@
 
 ## About
 
-* This is a Go package used to port data from a json file into Go structs.
-* The imported json file  must have the same ER Schema found in: [python-curses]( http://github.com/mezcel/python-curses ) or [printf-time]( http://github.com/mezcel/printf-time ).
+* This is a Go package used to port data from a ```.json``` file into Go structs.
+* The imported ```.json``` file  must have the same ER Schema found in: [python-curses]( http://github.com/mezcel/python-curses ) or [printf-time]( http://github.com/mezcel/printf-time ).
 * Demo json: [rosaryJSON-nab.json](demos/json/rosaryJSON-nab.json)
 
 ## Install
@@ -14,8 +14,8 @@
     // Install struct-fmt
     go get github.com/mezcel/struct-fmt
 
-    /*  // Uninstall
-        go clean -i -x github.com/mezcel/struct-fmt */
+    // Uninstall
+    // go clean -i -x github.com/mezcel/struct-fmt
     ```
 
 ## Code Usage
@@ -28,9 +28,17 @@ import "github.com/mezcel/struct-fmt"
 
 ## Use Case Demo
 Demo Apps:
-* Cycle though struct db queries: ```./demos/main.go```
-* Run
+* Scripture Rosary Go App: ```./demos/main.go```
+    * [README.md](demos/README.md)
+* Run Demo
     ```sh
+    ## install package
+    go get github.com/mezcel/struct-fmt
+
+    ## cd into demo directory
+    cd $GOPATH/src/github.com/mezcel/struct-fmt/demos/
+
+    ## run script
     go run main.go
     ```
 
