@@ -1,6 +1,6 @@
 # demo
 
-Use case for the struct-fmt package
+Use case demos for the struct-fmt package
 
 ## About
 
@@ -10,8 +10,8 @@ Use case for the struct-fmt package
 ## Objective Description
 
 * This is a cli scripture rosary app wittten in Go.
-* The rosary database is the same ```.json``` use in [python-curses]( http://github.com/mezcel/python-curses ). The ```struct``` ER schema is similar to the one used in [printf-time]( http://github.com/mezcel/printf-time ).
-* This app was/is an app used to help me learn Go.
+* The rosary database is the same ```.json``` use in [python-curses]( http://github.com/mezcel/python-curses ).
+* The ```struct``` ER schema is similar to the one used in [printf-time]( http://github.com/mezcel/printf-time ).
 
 ### App Scripts:
 
@@ -25,8 +25,8 @@ Use case for the struct-fmt package
 
 ```go
 // Run
-go run my-structs.go my-funcs.go main2.go
+go run main.go
 
-// Build as an Exe
-go build ( ../structs.go ../functions.go main2.go) -o "myApp.exe"
+// Build on Win10
+go Build main.go -o "myApp.exe"
 ```
