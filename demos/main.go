@@ -1,11 +1,6 @@
-/** file: main.go
-dependencies:
-	my-structs.go
-	my-funcs.go
-run: go run my-structs.go my-funcs.go main2.go
-build: go build (my-structs.go my-funcs.go main2.go) -o "myApp.exe" */
+/** file: main2.go */
 
-package main
+package source
 
 import (
 	"encoding/json"
@@ -13,17 +8,11 @@ import (
 	"time"
 )
 
-/*
-import (
-	"github.com/mezcel/struct-fmt/source"
-)
-*/
-
 func main() {
 
 	// Open a jsonFile
-	var jsonPath string = "../json/rosaryJSON-nab.json"
-	var byteValue []byte = returnByteValue(jsonPath)
+	var jsonPath string = "json/rosaryJSON-nab.json"
+	var byteValue []byte = ReturnByteValue(jsonPath)
 
 	// Make a struct DB from a json file
 
@@ -48,10 +37,10 @@ func main() {
 	// Main Loop
 
 	var weekdayNo int = int(time.Now().Weekday())
-	var accumulator int = returnStartPosition(weekdayNo)
+	var accumulator int = ReturnStartPosition(weekdayNo)
 
 	for accumulator < 315 {
-		cls() // clear terminal screen
+		Cls() // clear terminal screen
 
 		// position progress step increment
 		accumulator++

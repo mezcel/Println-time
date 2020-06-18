@@ -1,6 +1,6 @@
 /* my-funcs.go */
 
-package main
+package struct-fmt
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"runtime"
 )
 
-func cls() {
+func Cls() {
 	// clear screen
 
 	// insired from from: https://stackoverflow.com/a/22896706
@@ -40,7 +40,7 @@ func cls() {
 	}
 }
 
-func returnByteValue(jsonPath string) []byte {
+func ReturnByteValue(jsonPath string) []byte {
 	// Import and return json file
 
 	jsonFile, err := os.Open(jsonPath)
@@ -57,7 +57,7 @@ func returnByteValue(jsonPath string) []byte {
 	return byteValue
 }
 
-func returnStartPosition(weekdayNo int) int {
+func ReturnStartPosition(weekdayNo int) int {
 	var positionNo int = 0
 	//var weekdayNo int = int(time.Now().Weekday())
 

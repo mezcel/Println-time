@@ -2,55 +2,36 @@
 
 ## About
 
-* Inputs a ```.json``` file and render it's contents onto a cli display using Golang with gocui.
-* The primary query view mechanics are in place, the rest of the work will be in experimenting with the UI. Ultimately the UX will closely resemble [python-curses]( http://github.com/mezcel/python-curses ) and [printf-time]( http://github.com/mezcel/printf-time ).
-* The "curses", the display formatting, and the navigational control options are not designed or implemented yet.
+* This is a Go package which inputs a formatted scripture rosary json and parses them into structs.
+* The json must have the same ER Schema found in: [python-curses]( http://github.com/mezcel/python-curses ) or [printf-time]( http://github.com/mezcel/printf-time ).
 
-## Objective Description
-
-* This is a cli scripture rosary app wittten in Go.
-* The rosary database is the same ```.json``` use in [python-curses]( http://github.com/mezcel/python-curses ). The ```struct``` ER schema is similar to the one used in [printf-time]( http://github.com/mezcel/printf-time ).
-* This app was/is an app used to help me learn Go.
-
-## Install Dependency
+## Install
 
 Install Go: [golang.org](https://golang.org/dl/)
 
 ```go
-/*
-    Import this app using GO
-    I doubt this app's output is practical for use within another app.
-    Perhaps the structs and the .json could be recycled in another Go application.
-*/
-
+// Install struct-fmt
 go get github.com/mezcel/struct-fmt
+
+/*  // Uninstall
+    go clean -i -x github.com/mezcel/struct-fmt */
 ```
-## Run
+
+## Usage
 
 ```go
-cd <app-root-dir>
-
-// Run
-go run main.go
-
-// Build as an Exe
-go build main.go -o "myApp.exe"
+import "github.com/mezcel/struct-fmt"
 ```
 
-## Dependencies
-
-### Additional Go Packages
-
-* This is just a note reminding me to use this app for curses on windows.
-
-| package | install | about |
-| --- | --- | --- |
-|[gocui.git](https://github.com/jroimartin/gocui)| ```go get github.com/jroimartin/gocui``` | Go package aimed at creating Console User Interfaces. It is tput-like/curses-like |
-| [godoc.org](https://godoc.org/github.com/jroimartin/gocui) |```go doc github.com/jroimartin/gocui``` | Documentation
+## Use Case Demo
+Demo App:
+    ```./demos/main.go```
 
 ---
 
-## Setup a Local Go Workspace (Optional)
+# Go Development Notes
+
+## Setup a Local Go Workspace
 
 ### Linux (Debian)
 
