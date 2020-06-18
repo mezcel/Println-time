@@ -1,4 +1,4 @@
-# Println-time
+# struct-fmt
 
 ## About
 
@@ -17,12 +17,19 @@
 Install Go: [golang.org](https://golang.org/dl/)
 
 ```go
-// install the gocui package dependency
-go get github.com/jroimartin/gocui
+/*
+    Import this app using GO
+    I doubt this app's output is practical for use within another app.
+    Perhaps the structs and the .json could be recycled in another Go application.
+*/
+
+go get github.com/mezcel/struct-fmt
 ```
 ## Run
 
 ```go
+cd <app-root-dir>
+
 // Run
 go run main.go
 
@@ -33,6 +40,8 @@ go build main.go -o "myApp.exe"
 ## Dependencies
 
 ### Additional Go Packages
+
+* This is just a note reminding me to use this app for curses on windows.
 
 | package | install | about |
 | --- | --- | --- |
