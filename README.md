@@ -20,7 +20,7 @@ go run ./demos/main.go
     ## Install struct-fmt
     go get github.com/mezcel/struct-fmt
     ```
-    * Background on Go workspaces: [link](#-setup-a-local-go-workspace)
+    * Background on Go workspaces: [link](#go-development-notes)
     * The default Go repo location
         * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
         * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
