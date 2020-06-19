@@ -7,7 +7,8 @@
 
 #### Use Case [Demo](demos):
 ```sh
-go run ./demos/main.go
+cd demos
+go run main.go
 ```
 
 ---
