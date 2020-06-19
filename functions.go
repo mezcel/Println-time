@@ -10,7 +10,7 @@ import (
 	"runtime"
 )
 
-// clear cli screen
+// Clear cli screen
 func Cls() {
 	var clear map[string]func() //create a map for storing clear funcs
 
@@ -81,4 +81,18 @@ func ReturnStartPosition(weekdayNo int) int {
 	}
 
 	return positionNo
+}
+
+// Return int representing the next bead sequence position
+func NextBead(accumulator int) int {
+	// sequential navigation
+	if accumulator < 315 {
+		// forward progress
+		accumulator++
+	} else {
+		// loop back to start
+		accumulator = 0
+	}
+
+	return accumulator
 }

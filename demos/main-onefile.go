@@ -109,9 +109,6 @@ type Prayers struct {
 
 func cls() {
 	// clear screen
-
-	// insired from: https://stackoverflow.com/a/22896706
-
 	var clear map[string]func() //create a map for storing clear funcs
 
 	clear = make(map[string]func()) //Initialize it
@@ -183,6 +180,20 @@ func returnStartPosition(weekdayNo int) int {
 	return positionNo
 }
 
+// Return int representing the next bead sequence position
+func nextBead(accumulator int) int {
+	// sequential navigation
+	if accumulator < 315 {
+		// forward progress
+		accumulator++
+	} else {
+		// loop back to start
+		accumulator = 0
+	}
+
+	return accumulator
+}
+
 // Main
 
 func main() {
@@ -219,7 +230,7 @@ func main() {
 		cls() // clear terminal screen
 
 		// position progress step increment
-		accumulator++
+		accumulator = nextBead(accumulator)
 
 		var decadeIdx int = rosaryBeads.RosaryBeads[accumulator].DecadeIndex
 		var mysteryIdx int = rosaryBeads.RosaryBeads[accumulator].MysteryIndex
