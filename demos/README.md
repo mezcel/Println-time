@@ -1,6 +1,6 @@
 # demo
 
-Use case demo for the struct-fmt package
+Use case demo for the ```struct-fmt``` package
 
 ## About
 
@@ -24,10 +24,10 @@ Use case demo for the struct-fmt package
 
 ## Run
 
-```go
-// Run
+```sh
+## Run
 go run main.go
 
-// Build
+## Build
 go build main.go -o "myApp.exe"
 ```
