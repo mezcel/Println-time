@@ -3,7 +3,8 @@
 ## About
 
 * This is a Go package used to port data from a ```.json``` file into Go structs.
-* The imported ```.json``` file  must have the same ER Schema found in: [python-curses]( http://github.com/mezcel/python-curses ) or [printf-time]( http://github.com/mezcel/printf-time ).
+* The imported ```.json``` file  must have the same ER Schema used in: [python-curses]( http://github.com/mezcel/python-curses ), [printf-time]( http://github.com/mezcel/printf-time ), [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal), or [electron-container](https://github.com/mezcel/electron-container).
+    * Demo Json: [demos/json](demos/json)
 
 #### Use Case [Demo](demos):
 ```sh
