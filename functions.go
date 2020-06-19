@@ -10,11 +10,8 @@ import (
 	"runtime"
 )
 
+// clear cli screen
 func Cls() {
-	// clear screen
-
-	// insired from from: https://stackoverflow.com/a/22896706
-
 	var clear map[string]func() //create a map for storing clear funcs
 
 	clear = make(map[string]func()) //Initialize it
@@ -40,6 +37,7 @@ func Cls() {
 	}
 }
 
+// Returns byte[] of the json file input
 func ReturnByteValue(jsonPath string) []byte {
 	// Import and return json file
 
@@ -57,6 +55,7 @@ func ReturnByteValue(jsonPath string) []byte {
 	return byteValue
 }
 
+// Returns int representing which day of the week it currently is. Return 0-6, when 1 is Monday.
 func ReturnStartPosition(weekdayNo int) int {
 	var positionNo int = 0
 	//var weekdayNo int = int(time.Now().Weekday())
