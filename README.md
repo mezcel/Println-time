@@ -5,8 +5,12 @@
 * This is a Go package used to port data from a ```.json``` file into Go structs.
 * The imported ```.json``` file  must have the same ER Schema found in: [python-curses]( http://github.com/mezcel/python-curses ) or [printf-time]( http://github.com/mezcel/printf-time ).
 
-> Demo Use Case: \
-> ```go ./demos/main.go```
+Use Case Demo:
+```sh
+go ./demos/main.go
+```
+
+---
 
 ## Install
 
@@ -33,6 +37,8 @@
     ```sh
     go doc github.com/mezcel/struct-fmt
     ```
+
+---
 
 ## Code Usage
 
