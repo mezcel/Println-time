@@ -10,7 +10,7 @@ import (
 	"runtime"
 )
 
-// Clear cli screen
+// Cls() will clear the cli/tui screen
 func Cls() {
 	var clear map[string]func() //create a map for storing clear funcs
 
@@ -37,7 +37,7 @@ func Cls() {
 	}
 }
 
-// Returns byte[] of the json file input
+// ReturnByteValue(jsonPath string) will returns a byte[] of the json file input
 func ReturnByteValue(jsonPath string) []byte {
 	// Import and return json file
 
@@ -55,7 +55,7 @@ func ReturnByteValue(jsonPath string) []byte {
 	return byteValue
 }
 
-// Returns int representing which day of the week it currently is. Return 0-6, when 1 is Monday.
+// ReturnStartPosition(weekdayNo int) will return an int representing which day of the week it currently is. Return 0-6, when 1 is Monday.
 func ReturnStartPosition(weekdayNo int) int {
 	var positionNo int = 0
 	//var weekdayNo int = int(time.Now().Weekday())
@@ -83,7 +83,7 @@ func ReturnStartPosition(weekdayNo int) int {
 	return positionNo
 }
 
-// Return int representing the next bead sequence position
+// NextBead(accumulator int) will Return an int representing the next bead sequence position
 func NextBead(accumulator int) int {
 	// sequential navigation
 	if accumulator < 315 {

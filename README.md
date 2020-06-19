@@ -7,7 +7,7 @@
 
 Use Case Demo:
 ```sh
-go ./demos/main.go
+go run ./demos/main.go
 ```
 
 ---
@@ -19,12 +19,12 @@ go ./demos/main.go
     ```sh
     ## Install struct-fmt
     go get github.com/mezcel/struct-fmt
-
-    ## The default Go repo location:
-    ##  Win10  - $env:USERPROFILE\go\src\github.com\mezcel\struct-fmt
-    ##  Debian - ~/go/src/github.com/mezcel/struct-fmt
     ```
     * Background on Go workspaces: [link](#-setup-a-local-go-workspace)
+    * The default Go repo location
+        * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
+        * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
+
 * Update an existing package
     ```sh
     go get -u github.com/mezcel/struct-fmt
