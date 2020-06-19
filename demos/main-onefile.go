@@ -233,11 +233,11 @@ func main() {
 		var messageText string = messages.Messages[messageIdx].MesageText
 		var prayerText string = prayers.Prayers[prayerIdx].PrayerText
 
-		fmt.Println("Decade:    " + decadeName)
-		fmt.Println("Mystery:   " + mysteryName)
-		fmt.Println("Message:   " + messageText)
-		fmt.Println("Scripture:\n\t   " + scriptureText)
-		fmt.Println("\nPrayer:\n\t   " + prayerText)
+		fmt.Println("Decade:\t\t" + decadeName)
+		fmt.Println("Mystery:\t" + mysteryName)
+		fmt.Println("Message:\t" + messageText)
+		fmt.Println("Scripture:\t" + scriptureText + "\n")
+		fmt.Println("Prayer:\t\t" + prayerText)
 
 		fmt.Println("\n---\nPress the Enter to continue / Ctrl+C to Exit")
 		fmt.Scanln()

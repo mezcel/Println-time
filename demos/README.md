@@ -1,6 +1,6 @@
 # demo
 
-Use case demos for the struct-fmt package
+Use case demo for the struct-fmt package
 
 ## About
 
@@ -17,8 +17,9 @@ Use case demos for the struct-fmt package
 
 | script name | about |
 | --- | --- |
-|```structs.go```|Json Structs|
+|```structs.go```|Go Structs based on Json|
 |```functions.go```|App Functions|
+|```main-onefile.go```|Standalone Go file which does not import the ```struct-fmt``` package|
 
 
 ## Run
@@ -27,6 +28,6 @@ Use case demos for the struct-fmt package
 // Run
 go run main.go
 
-// Build on Win10
-go Build main.go -o "myApp.exe"
+// Build
+go build main.go -o "myApp.exe"
 ```
