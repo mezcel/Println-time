@@ -10,12 +10,22 @@
 
 * Install Go: [download](https://golang.org/dl/)
 * Install this Go package
-    ```go
-    // Install struct-fmt
+    ```sh
+    ## Install struct-fmt
     go get github.com/mezcel/struct-fmt
 
-    // Uninstall
-    // go clean -i -x github.com/mezcel/struct-fmt
+    ## The default Go repo location:
+    ##  Win10  - $env:USERPROFILE\go\src\github.com\mezcel\struct-fmt
+    ##  Debian - ~/go/src/github.com/mezcel/struct-fmt
+    ```
+    * Background on Go workspaces: [link](#-setup-a-local-go-workspace)
+* Update an existing package
+    ```sh
+    go get -u github.com/mezcel/struct-fmt
+    ```
+* Clean removes object files from package source directories
+    ```sh
+    go clean -i -x github.com/mezcel/struct-fmt
     ```
 
 ## Code Usage
