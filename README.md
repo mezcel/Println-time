@@ -6,10 +6,18 @@
 * The imported ```.json``` file  must have the same ER Schema used in: [python-curses]( http://github.com/mezcel/python-curses ), [printf-time]( http://github.com/mezcel/printf-time ), [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal), or [electron-container](https://github.com/mezcel/electron-container).
     * Demo Json: [demos/json](demos/json)
 
-#### Use Case [Demo](demos):
+Run Use Case  Demos [README](demos)
 ```sh
-cd demos
-go run main.go
+## Install struct-fmt
+go get github.com/mezcel/struct-fmt
+
+## Navigate into the repo's demo directory
+cd demos/
+
+## launch scripts
+go run main.go          ## Tui Rosary with mezcel/struct-fmt package
+go run main-ui.go       ## Gui Rosary with mezcel/struct-fmt & andlabs/ui package
+go run main-onefile.go  ## Tui Rosary wothout external packages
 ```
 
 ---
@@ -18,26 +26,18 @@ go run main.go
 
 * Install Go: [download](https://golang.org/dl/)
 * Install this Go package
-    ```sh
-    ## Install struct-fmt
-    go get github.com/mezcel/struct-fmt
-    ```
-    * Background on Go workspaces: [link](#go-development-notes)
-    * The default Go repo location
-        * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
-        * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
+```sh
+## Install struct-fmt
+go get github.com/mezcel/struct-fmt
+```
+* Background on Go workspaces: [link](#go-development-notes)
+* The default Go repo location
+    * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
+    * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
 
 * Update an existing package
     ```sh
     go get -u github.com/mezcel/struct-fmt
-    ```
-* Clean removes object files from package source directories
-    ```sh
-    go clean -i -x github.com/mezcel/struct-fmt
-    ```
-* Generate and display package documentation
-    ```sh
-    go doc github.com/mezcel/struct-fmt
     ```
 
 ---
@@ -48,6 +48,9 @@ Use this package in a Go script.
 ```go
 // Import this package into a Go program
 import "github.com/mezcel/struct-fmt"
+
+// or
+import structfmt "github.com/mezcel/struct-fmt"
 ```
 
 ## Use Case Demo
