@@ -1,3 +1,7 @@
+/* file		: main-ui.go
+dependencies: go get github.com/mezcel/struct-fmt
+			  go get github.com/andlabs/ui */
+
 package main
 
 import (
