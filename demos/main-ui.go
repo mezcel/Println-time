@@ -5,8 +5,11 @@ dependencies: go get github.com/mezcel/struct-fmt
 package main
 
 import (
+	"strings"
+
 	"github.com/andlabs/ui"
 	_ "github.com/andlabs/ui/winmanifest"
+	"github.com/buger/goterm"
 
 	"encoding/json"
 	"fmt"
@@ -45,6 +48,27 @@ var Scriptures structfmt.Scriptures
 var Messages structfmt.Messages
 var Prayers structfmt.Prayers
 
+func WrapCentence(terminalWidth int, inSentence string) string {
+	var strOutput string = ""
+
+	wordsArr := strings.Fields(inSentence)
+	wordCount := len(wordsArr)
+	counter := 0
+
+	for i := 0; i < wordCount; i++ {
+		counter = counter + len(wordsArr[i]) + 1
+
+		if counter <= terminalWidth {
+			strOutput = strOutput + wordsArr[i] + " "
+		} else {
+			strOutput = strOutput + wordsArr[i] + "\n\t\t"
+			counter = 0
+		}
+	}
+
+	return strOutput
+}
+
 func updateGlobals(RosaryBeads structfmt.RosaryBeads, Beads structfmt.Beads, Decades structfmt.Decades, Mysterys structfmt.Mysterys, Books structfmt.Books, Scriptures structfmt.Scriptures, Messages structfmt.Messages, Prayers structfmt.Prayers, Accumulator int) {
 
 	// Query FKs
@@ -71,6 +95,10 @@ func printTui(DecadeName string, MysteryName string, MessageText string, Scriptu
 	fmt.Println("Mystery:\t" + MysteryName)
 	fmt.Println("Message:\t" + MessageText)
 	fmt.Println("Scripture:\t" + ScriptureText + "\n")
+
+	terminalWidth := goterm.Width()
+	PrayerText = WrapCentence(terminalWidth, PrayerText)
+
 	fmt.Println("Prayer:\t\t" + PrayerText)
 
 	fmt.Println("\n---\nPress the Ctrl+C to Exit")
@@ -105,19 +133,9 @@ func setupUI() {
 		return true
 	})
 
-	hbox := ui.NewHorizontalBox()
-	hbox.SetPadded(true)
-	mainwin.SetChild(hbox)
-
 	vbox := ui.NewVerticalBox()
 	vbox.SetPadded(true)
-	hbox.Append(vbox, false)
-
-	// Main Loop
-
-	// Update position counter
-	updateGlobals(RosaryBeads, Beads, Decades, Mysterys, Books, Scriptures, Messages, Prayers, Accumulator)
-	printTui(DecadeName, MysteryName, MessageText, ScriptureText, PrayerText)
+	mainwin.SetChild(vbox)
 
 	btnNext = ui.NewButton("Next Bead")
 	btnNext.OnClicked(func(*ui.Button) {
@@ -125,6 +143,10 @@ func setupUI() {
 		updateUI(Accumulator)
 	})
 	vbox.Append(btnNext, false)
+
+	// Update position counter
+	updateGlobals(RosaryBeads, Beads, Decades, Mysterys, Books, Scriptures, Messages, Prayers, Accumulator)
+	printTui(DecadeName, MysteryName, MessageText, ScriptureText, PrayerText)
 
 	lblDecadeName = ui.NewLabel(DecadeName)
 	lblMysteryName = ui.NewLabel(MysteryName)
