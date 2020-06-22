@@ -1,6 +1,6 @@
 # demo
 
-Some ( Rough and Hasty ) use case demo for the ```struct-fmt``` package.
+Some ( Rough and Hasty ) use case demos for the ```struct-fmt``` package.
 * These demo are under developed. I was/am still learning the in's and outs of Golang. But they work and satisfy the package usecase.
 
 ## About
