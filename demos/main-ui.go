@@ -129,15 +129,52 @@ func (areaHandler) DragBroken(a *ui.Area) {
 }
 
 func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
-    // reject all keys
-    return false
+
+    // Trigger command only after the key is depressed
+    if ( ke.Up ) {
+        switch ke.Key {
+            case 113: // q
+                ui.Quit()
+            case 104: // h
+                PreviousClick(a)
+            case 106: // j
+                PreviousClick(a)
+            case 107: // k
+                NextClick(a)
+            case 108: // l
+                NextClick(a)
+            case 32: // spacebar
+                NextClick(a)
+            case 10: // enter key
+                NextClick(a)
+            default:
+                //fmt.Println("key press:", ke.Key, ", key Up:", ke.Up)
+        }
+
+    }
+
+    return false // Documentation recommends a false return
+}
+
+func NextClick(area *ui.Area) {
+        textStructs.Position = structfmt.NextBead(textStructs.Position)
+        UpdateDisplayStrings()
+        area.QueueRedrawAll()
+        PrintTui()
+}
+
+func PreviousClick(area *ui.Area) {
+        textStructs.Position = structfmt.PreviousBead(textStructs.Position)
+        UpdateDisplayStrings()
+        area.QueueRedrawAll()
+        PrintTui()
 }
 
 // setupUI() is the Native GUI layout design
 func setupUI() {
 
     // Define Main Window
-    mainwin := ui.NewWindow("Go Rosary GUI - andlabs/ui", 800, 500, true)
+    mainwin := ui.NewWindow("Go Rosary GUI - github.com/mezcel/struct-fmt with andlabs/ui", 800, 500, true)
     mainwin.SetMargined(true)
     mainwin.OnClosing(func(*ui.Window) bool {
         mainwin.Destroy()
@@ -195,26 +232,18 @@ func setupUI() {
     vbox.Append(ui.NewHorizontalSeparator(), false)
 
     // Place Bead Navigation Label
-    vbox.Append(ui.NewLabel("Bead Navigation:"), false)
+    vbox.Append(ui.NewLabel("Bead Navigation:\nClick in rosary to use keys\n\tforward:\t\tl\n\tbackward:\th\n\tQuit:\t\tq"), false)
 
     // Define Forward Navigation Button
     btnNext = ui.NewButton("Next >>")
     btnNext.OnClicked(func(*ui.Button) {
-        textStructs.Position = structfmt.NextBead(textStructs.Position)
-
-        UpdateDisplayStrings()
-        area.QueueRedrawAll()
-        PrintTui()
+        NextClick(area)
     })
 
     // Define Backward Navigation Button
     btnPrevious = ui.NewButton("<< Back")
     btnPrevious.OnClicked(func(*ui.Button) {
-        textStructs.Position = structfmt.PreviousBead(textStructs.Position)
-
-        UpdateDisplayStrings()
-        area.QueueRedrawAll()
-        PrintTui()
+        PreviousClick(area)
     })
 
     // Place Navigation Buttons
@@ -228,7 +257,7 @@ func setupUI() {
     vbox.Append(ui.NewLabel("Quit:"), false)
 
     // Define Close Button
-    btnClose = ui.NewButton("Close GUI Window")
+    btnClose = ui.NewButton("Close Window")
     btnClose.OnClicked(func(*ui.Button) {
         ui.Quit()
     })
