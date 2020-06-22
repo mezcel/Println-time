@@ -232,7 +232,11 @@ func setupUI() {
     vbox.Append(ui.NewHorizontalSeparator(), false)
 
     // Place Bead Navigation Label
-    vbox.Append(ui.NewLabel("Bead Navigation:\nClick in rosary to use keys\n\tforward:\t\tl\n\tbackward:\th\n\tQuit:\t\tq"), false)
+    vbox.Append(ui.NewLabel("Bead Navigation:"), false)
+    vbox.Append(ui.NewLabel(" Click in rosary to use keys"), false)
+    vbox.Append(ui.NewLabel(" forward:\t\tl"), false)
+    vbox.Append(ui.NewLabel(" backward:\th"), false)
+    vbox.Append(ui.NewLabel(" Quit:\t\tq"), false)
 
     // Define Forward Navigation Button
     btnNext = ui.NewButton("Next >>")
