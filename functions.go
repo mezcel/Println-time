@@ -47,7 +47,7 @@ func ReturnByteValue(jsonPath string) []byte {
         fmt.Println(err)
     }
 
-    fmt.Println("Successfully Opened users.json")
+    fmt.Println("Successfully Opened", jsonPath)
     defer jsonFile.Close()
 
     byteValue, _ := ioutil.ReadAll(jsonFile)
