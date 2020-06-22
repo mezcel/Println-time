@@ -18,12 +18,22 @@ import (
     structfmt "github.com/mezcel/struct-fmt"
 )
 
+type ReadingsText struct {
+    DecadeName string
+    MysteryName string
+    ScriptureText string
+    MessageText string
+    PrayerText string
+    Position int
+}
+
 var (
     fontButton *ui.FontButton
     alignment *ui.Combobox
 
     attrstr *ui.AttributedString
     btnNext *ui.Button
+    btnPrevious *ui.Button
     btnClose *ui.Button
 
     lblDecadeName    *ui.Label
@@ -31,66 +41,55 @@ var (
     lblScriptureText *ui.Label
     lblMessageText   *ui.Label
     lblPrayerText    *ui.Label
+
+    textStructs ReadingsText
+
+    // Global struct db variables
+    RosaryBeads structfmt.RosaryBeads
+    Beads structfmt.Beads
+    Decades structfmt.Decades
+    Mysterys structfmt.Mysterys
+    Books structfmt.Books
+    Scriptures structfmt.Scriptures
+    Messages structfmt.Messages
+    Prayers structfmt.Prayers
 )
 
-// Global string vars used for display readings
-var DecadeName string = "DecadeName"
-var MysteryName string = "MysteryName"
-var ScriptureText string = "ScriptureText"
-var MessageText string = "MessageText"
-var PrayerText string = "PrayerText"
-var Accumulator int = 0
+/* *** Text Readings Values *** */
 
-// Global struct db variables
-var RosaryBeads structfmt.RosaryBeads
-var Beads structfmt.Beads
-var Decades structfmt.Decades
-var Mysterys structfmt.Mysterys
-var Books structfmt.Books
-var Scriptures structfmt.Scriptures
-var Messages structfmt.Messages
-var Prayers structfmt.Prayers
+// UpdateDisplayStrings() will update global string vars
+func UpdateDisplayStrings() {
 
-/* *** Text Readings Vaues *** */
-
-// updateGlobals(<args>) will update global string vars
-func updateGlobals(RosaryBeads structfmt.RosaryBeads, Beads structfmt.Beads, Decades structfmt.Decades, Mysterys structfmt.Mysterys, Books structfmt.Books, Scriptures structfmt.Scriptures, Messages structfmt.Messages, Prayers structfmt.Prayers, Accumulator int) {
+    var idx int = textStructs.Position
 
     // Query FKs
-    var decadeIdx int = RosaryBeads.RosaryBeads[Accumulator].DecadeIndex
-    var mysteryIdx int = RosaryBeads.RosaryBeads[Accumulator].MysteryIndex
-    var prayerIdx int = RosaryBeads.RosaryBeads[Accumulator].PrayerIndex
-    var scriptureIdx int = RosaryBeads.RosaryBeads[Accumulator].ScriptureIndex
-    var messageIdx int = RosaryBeads.RosaryBeads[Accumulator].MessageIndex
+    var decadeIdx int = RosaryBeads.RosaryBeads[idx].DecadeIndex
+    var mysteryIdx int = RosaryBeads.RosaryBeads[idx].MysteryIndex
+    var prayerIdx int = RosaryBeads.RosaryBeads[idx].PrayerIndex
+    var scriptureIdx int = RosaryBeads.RosaryBeads[idx].ScriptureIndex
+    var messageIdx int = RosaryBeads.RosaryBeads[idx].MessageIndex
 
     // Query attribute strings
-    DecadeName = Decades.Decades[decadeIdx].DecadeName
-    MysteryName = Mysterys.Mysterys[mysteryIdx].MysteryName
-    ScriptureText = Scriptures.Scriptures[scriptureIdx].ScriptureText
-    MessageText = Messages.Messages[messageIdx].MesageText
-    PrayerText = Prayers.Prayers[prayerIdx].PrayerText
+    textStructs.DecadeName = Decades.Decades[decadeIdx].DecadeName
+    textStructs.MysteryName = Mysterys.Mysterys[mysteryIdx].MysteryName
+    textStructs.ScriptureText = Scriptures.Scriptures[scriptureIdx].ScriptureText
+    textStructs.MessageText = Messages.Messages[messageIdx].MesageText
+    textStructs.PrayerText = Prayers.Prayers[prayerIdx].PrayerText
 }
 
-// printTui(<args>) will render string display strings in tui
-func printTui(DecadeName string, MysteryName string, MessageText string, ScriptureText string, PrayerText string) {
+// PrintTui(<args>) will render string display strings in tui
+func PrintTui() {
     // clear terminal screen
     structfmt.Cls()
 
     // View query on cli tui
-    fmt.Println("Decade:\t\t" + DecadeName)
-    fmt.Println("Mystery:\t" + MysteryName)
-    fmt.Println("Message:\t" + MessageText)
-    fmt.Println("Scripture:\t" + ScriptureText + "\n")
-
-    fmt.Println("Prayer:\t\t" + PrayerText)
+    fmt.Println("Decade:\t\t"   + textStructs.DecadeName)
+    fmt.Println("Mystery:\t"    + textStructs.MysteryName)
+    fmt.Println("Message:\t"    + textStructs.MessageText)
+    fmt.Println("Scripture:\t"  + textStructs.ScriptureText + "\n")
+    fmt.Println("Prayer:\t\t"   + textStructs.PrayerText)
 
     fmt.Println("\n---\nPress the Ctrl+C to Exit")
-}
-
-// updateUI(Accumulator int) will update global string vars and render string display strings in tui
-func updateUI(Accumulator int) {
-    updateGlobals(RosaryBeads, Beads, Decades, Mysterys, Books, Scriptures, Messages, Prayers, Accumulator)
-    printTui(DecadeName, MysteryName, MessageText, ScriptureText, PrayerText)
 }
 
 /* *** GUI Configurations *** */
@@ -99,7 +98,11 @@ type areaHandler struct{}
 
 // Draw Text Area
 func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
-    tmpString := "Decade:\n\t" + DecadeName + "\n\nMystery:\n\t" + MysteryName + "\n\nMessage:\n\t" + MessageText + "\n\nScripture:\n\t" + ScriptureText + "\n\nPrayer:\n\t" + PrayerText
+    tmpString := "Decade:\n\t"      + textStructs.DecadeName +
+                 "\n\nMystery:\n\t" + textStructs.MysteryName +
+                 "\n\nMessage:\n\t" + textStructs.MessageText +
+                 "\n\nScripture:\n\t" + textStructs.ScriptureText +
+                 "\n\nPrayer:\n\t"  + textStructs.PrayerText
 
     attrstr = ui.NewAttributedString(tmpString)
 
@@ -194,15 +197,28 @@ func setupUI() {
     // Place Bead Navigation Label
     vbox.Append(ui.NewLabel("Bead Navigation:"), false)
 
-    // Define Navigation Button
-    btnNext = ui.NewButton("Next Bead >>")
+    // Define Forward Navigation Button
+    btnNext = ui.NewButton("Next >>")
     btnNext.OnClicked(func(*ui.Button) {
-        Accumulator = structfmt.NextBead(Accumulator)
-        updateUI(Accumulator)
+        textStructs.Position = structfmt.NextBead(textStructs.Position)
+
+        UpdateDisplayStrings()
         area.QueueRedrawAll()
+        PrintTui()
     })
 
-    // Place Navigation Button
+    // Define Backward Navigation Button
+    btnPrevious = ui.NewButton("<< Back")
+    btnPrevious.OnClicked(func(*ui.Button) {
+        textStructs.Position = structfmt.PreviousBead(textStructs.Position)
+
+        UpdateDisplayStrings()
+        area.QueueRedrawAll()
+        PrintTui()
+    })
+
+    // Place Navigation Buttons
+    vbox.Append(btnPrevious, false)
     vbox.Append(btnNext, false)
 
     // Place Separator
@@ -221,8 +237,8 @@ func setupUI() {
     vbox.Append(btnClose, false)
 
     // Update position counter and global text variables
-    updateGlobals(RosaryBeads, Beads, Decades, Mysterys, Books, Scriptures, Messages, Prayers, Accumulator)
-    printTui(DecadeName, MysteryName, MessageText, ScriptureText, PrayerText)
+    UpdateDisplayStrings()
+    PrintTui()
 
     mainwin.Show()
 }
@@ -248,7 +264,9 @@ func main() {
     var WeekdayNo int = int(time.Now().Weekday())
 
     // Initial starting position based on which day of the week it is
-    Accumulator = structfmt.ReturnStartPosition(WeekdayNo)
+    textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
 
     ui.Main(setupUI)
+
+    fmt.Println("done")
 }
