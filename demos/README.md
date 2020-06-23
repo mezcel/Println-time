@@ -10,13 +10,15 @@ Some ( Rough and Hasty ) use case demos for the ```struct-fmt``` package.
 
 ## Objective Description
 
-* This is a cli scripture rosary app wittten in Go.
+* This is a cli scripture rosary app written in Go.
 * The rosary database is the same ```.json``` use in [python-curses]( http://github.com/mezcel/python-curses ).
 * The ```struct``` ER schema is similar to the one used in [printf-time]( http://github.com/mezcel/printf-time ).
 
 ---
 
-## Run
+## Run Demos
+
+### tui demo
 
 ```sh
 ## Run
@@ -26,7 +28,24 @@ go run main.go
 go build main.go -o "myApp.exe"
 ```
 
-### App Scripts:
+### gui demo
+
+```sh
+## Install struct-fmt
+go get github.com/mezcel/struct-fmt
+
+## Install andlabs/ui
+go get github.com/andlabs/ui
+
+## Run
+go run main-ui.go
+
+```
+> *Note*: ```andlabs/ui``` on Win10 will need gcc. Installing Cygwin or MSYS2 will satify this. Read the ```andlabs/ui``` code comments to see what libraries win10 libs are called if there are still issues.
+
+---
+
+## App Scripts:
 
 | script name | about |
 | --- | --- |

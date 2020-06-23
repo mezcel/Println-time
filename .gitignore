@@ -3,5 +3,5 @@
 
 ## ignore builds
 *.exe
-main
+main*
 myApp
