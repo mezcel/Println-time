@@ -3,5 +3,7 @@
 
 ## ignore builds
 *.exe
-main*
+main
+main-ui
+main-onefile
 myApp
