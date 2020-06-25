@@ -3,6 +3,7 @@
  * dependencies : go get github.com/mezcel/struct-fmt
  *                go get github.com/andlabs/ui
  * about:       : Based on andlabs' drawtext.go example script
+ * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-ui.go
  * */
 
 package main
@@ -218,7 +219,7 @@ func PreviousClick(area *ui.Area) {
 func setupUI() {
 
     // Define Main Window
-    mainwin := ui.NewWindow("Go Rosary GUI - github.com/mezcel/struct-fmt with andlabs/ui", 400, 600, true)
+    mainwin := ui.NewWindow("Golang Rosary GUI", 400, 600, true)
     mainwin.SetMargined(true)
     mainwin.OnClosing(func(*ui.Window) bool {
         mainwin.Destroy()

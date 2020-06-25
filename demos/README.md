@@ -51,7 +51,6 @@ go run main-ui.go
 | --- | --- |
 |```structs.go```|Go Structs based on Json|
 |```functions.go```|App Functions|
-|```main-onefile.go```|Standalone Go file which does not import the ```struct-fmt``` package|
 |```main.go```|Tui Rosary with the ```mezcel/struct-fmt``` package|
 |```main-ui.go```|Gui Rosary with the ```mezcel/struct-fmt``` & the ```andlabs/ui``` package |
 
