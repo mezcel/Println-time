@@ -18,6 +18,7 @@ import (
     structfmt "github.com/mezcel/struct-fmt"
 )
 
+// Globa Vars used for UI text display
 type ReadingsText struct {
     DecadeName string
     MysteryName string
@@ -25,6 +26,9 @@ type ReadingsText struct {
     MessageText string
     PrayerText string
     Position int
+    LoopBody int
+	SmallbeadPercent int
+	MysteryPercent   int
 }
 
 var (
@@ -70,7 +74,13 @@ func UpdateDisplayStrings() {
     var messageIdx int = RosaryBeads.RosaryBeads[idx].MessageIndex
 
     // Query attribute strings
+    
+    textStructs.LoopBody = RosaryBeads.RosaryBeads[idx].LoopBody
+    textStructs.SmallbeadPercent = RosaryBeads.RosaryBeads[idx].SmallbeadPercent
+    textStructs.MysteryPercent = RosaryBeads.RosaryBeads[idx].MysteryPercent
+
     textStructs.DecadeName = Decades.Decades[decadeIdx].DecadeName
+
     textStructs.MysteryName = Mysterys.Mysterys[mysteryIdx].MysteryName
     textStructs.ScriptureText = Scriptures.Scriptures[scriptureIdx].ScriptureText
     textStructs.MessageText = Messages.Messages[messageIdx].MesageText
@@ -98,13 +108,14 @@ type areaHandler struct{}
 
 // Draw Text Area
 func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
-    tmpString := "Decade:\n\t"      + textStructs.DecadeName +
+
+    displayString := "Decade:\n\t"      + textStructs.DecadeName +
                  "\n\nMystery:\n\t" + textStructs.MysteryName +
                  "\n\nMessage:\n\t" + textStructs.MessageText +
                  "\n\nScripture:\n\t" + textStructs.ScriptureText +
                  "\n\nPrayer:\n\t"  + textStructs.PrayerText
 
-    attrstr = ui.NewAttributedString(tmpString)
+    attrstr = ui.NewAttributedString(displayString)
 
     tl := ui.DrawNewTextLayout(&ui.DrawTextLayoutParams{
         String:     attrstr,
@@ -135,18 +146,6 @@ func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
         switch ke.Key {
             case 113: // q
                 ui.Quit()
-            case 104: // h
-                PreviousClick(a)
-            case 106: // j
-                PreviousClick(a)
-            case 107: // k
-                NextClick(a)
-            case 108: // l
-                NextClick(a)
-            case 32: // spacebar
-                NextClick(a)
-            case 10: // enter key
-                NextClick(a)
             default:
                 //fmt.Println("key press:", ke.Key, ", key Up:", ke.Up)
         }
@@ -154,6 +153,41 @@ func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
     }
 
     return false // Documentation recommends a false return
+}
+
+func ProgressSegmentInteger (inputInt int, loopBody int) int {
+    var intReturn int = 0
+
+
+    if (loopBody == 1) {
+        // decade
+        intReturn = inputInt * 10
+    } else {
+        // intro
+        intReturn = (inputInt * 10 ) + 30
+    }
+
+    if (intReturn > 100) {
+        intReturn = 100
+    }
+
+    return intReturn
+}
+
+func ProgressTotalInteger (inputInt int) int {
+    var intReturn int = 0
+    intReturn = inputInt * 2
+
+    return intReturn
+}
+
+func UpdateProgressBar(pbarDecade *ui.ProgressBar, pbarMystery *ui.ProgressBar) {
+
+    decadeProgress := ProgressSegmentInteger(textStructs.SmallbeadPercent, textStructs.LoopBody)
+    mysteryProgress := ProgressTotalInteger(textStructs.MysteryPercent)
+
+    pbarDecade.SetValue(decadeProgress)
+    pbarMystery.SetValue(mysteryProgress)
 }
 
 func NextClick(area *ui.Area) {
@@ -228,31 +262,44 @@ func setupUI() {
     hbox.Append(area, true)
     form.Append("Alignment", alignment, false)
 
+    // Progress Bar
+    pbarDecade := ui.NewProgressBar()
+    pbarMystery := ui.NewProgressBar()
+
     // Place Separator
     vbox.Append(ui.NewHorizontalSeparator(), false)
 
     // Place Bead Navigation Label
     vbox.Append(ui.NewLabel("Bead Navigation:"), false)
-    vbox.Append(ui.NewLabel(" Click in rosary to use keys"), false)
-    vbox.Append(ui.NewLabel(" forward:\t\tl"), false)
-    vbox.Append(ui.NewLabel(" backward:\th"), false)
-    vbox.Append(ui.NewLabel(" Quit:\t\tq"), false)
 
     // Define Forward Navigation Button
     btnNext = ui.NewButton("Next >>")
     btnNext.OnClicked(func(*ui.Button) {
         NextClick(area)
+        UpdateProgressBar(pbarDecade, pbarMystery)
     })
 
     // Define Backward Navigation Button
     btnPrevious = ui.NewButton("<< Back")
     btnPrevious.OnClicked(func(*ui.Button) {
         PreviousClick(area)
+        UpdateProgressBar(pbarDecade, pbarMystery)
     })
 
     // Place Navigation Buttons
     vbox.Append(btnPrevious, false)
     vbox.Append(btnNext, false)
+
+    // Place Separator
+    vbox.Append(ui.NewHorizontalSeparator(), false)
+
+    // Place Segment Progress
+    vbox.Append(ui.NewLabel("Segment Progress:"), false)
+    vbox.Append(pbarDecade, false)
+    
+    // Place Total Progress
+    vbox.Append(ui.NewLabel("Total Progress:"), false)
+	vbox.Append(pbarMystery, false)
 
     // Place Separator
     vbox.Append(ui.NewHorizontalSeparator(), false)
