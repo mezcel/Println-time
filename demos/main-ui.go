@@ -169,7 +169,6 @@ func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
 func ProgressSegmentInteger (inputInt int, loopBody int) int {
     var intReturn int = 0
 
-
     if (loopBody == 1) {
         // decade
         intReturn = inputInt * 10
@@ -241,9 +240,6 @@ func setupUI() {
     hboxNav := ui.NewHorizontalBox()
     hboxNav.SetPadded(true)
 
-    hboxProgBar := ui.NewHorizontalBox()
-    hboxProgBar.SetPadded(true)
-
     vbox := ui.NewVerticalBox()
     vbox.SetPadded(true)
     
@@ -251,18 +247,12 @@ func setupUI() {
 
     area := ui.NewArea(areaHandler{})
 
-    // Define Font Button
-    fontButton = ui.NewFontButton()
-    fontButton.OnChanged(func(*ui.FontButton) {
-        area.QueueRedrawAll()
-    })
-
     // Text Area Form
     form := ui.NewForm()
     form.SetPadded(true)
 
+    // Text Alignment Combobox
     alignment = ui.NewCombobox()
-    // note that the items match with the values of the uiDrawTextAlign values
     alignment.Append("Left")
     alignment.Append("Center")
     alignment.Append("Right")
@@ -272,6 +262,12 @@ func setupUI() {
     })
 
     form.Append("Alignment", alignment, false)
+
+    // Define Font Button
+    fontButton = ui.NewFontButton()
+    fontButton.OnChanged(func(*ui.FontButton) {
+        area.QueueRedrawAll()
+    })
 
     hboxFont.Append(fontButton, false)
     hboxFont.Append(form, false)
@@ -312,9 +308,6 @@ func setupUI() {
     vbox.Append(ui.NewHorizontalSeparator(), false)
     
     // Progress Bars
-    /*hboxProgBar.Append(pbarDecade, false)
-    hboxProgBar.Append(pbarMystery, false)
-    vbox.Append(hboxProgBar, false)*/
     vbox.Append(pbarDecade, false)
     vbox.Append(pbarMystery, false)
 
