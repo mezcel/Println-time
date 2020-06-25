@@ -104,18 +104,33 @@ func PrintTui() {
 
 /* *** GUI Configurations *** */
 
+// Apply append decorated string
+func appendWithAttributes(what string, attrs ...ui.Attribute) {
+	start := len(attrstr.String())
+	end := start + len(what)
+	attrstr.AppendUnattributed(what)
+	for _, a := range attrs {
+		attrstr.SetAttribute(a, start, end)
+	}
+}
+
 type areaHandler struct{}
 
 // Draw Text Area
 func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
 
-    displayString := "Decade:\n\t"      + textStructs.DecadeName +
-                 "\n\nMystery:\n\t" + textStructs.MysteryName +
-                 "\n\nMessage:\n\t" + textStructs.MessageText +
-                 "\n\nScripture:\n\t" + textStructs.ScriptureText +
-                 "\n\nPrayer:\n\t"  + textStructs.PrayerText
-
-    attrstr = ui.NewAttributedString(displayString)
+    // Formatted display string
+    attrstr = ui.NewAttributedString("")
+        appendWithAttributes("Decade:\n\t", ui.TextWeightBold)
+        attrstr.AppendUnattributed(textStructs.DecadeName)
+        appendWithAttributes("\n\nMystery:\n\t", ui.TextWeightBold)
+        attrstr.AppendUnattributed(textStructs.MysteryName)
+        appendWithAttributes("\n\nMessage:\n\t", ui.TextWeightBold)
+        attrstr.AppendUnattributed(textStructs.MessageText)
+        appendWithAttributes("\n\nScripture:\n\t", ui.TextWeightBold)
+        attrstr.AppendUnattributed(textStructs.ScriptureText)
+        appendWithAttributes("\n\nPrayer:\n\t", ui.TextWeightBold)
+        attrstr.AppendUnattributed(textStructs.PrayerText)
 
     tl := ui.DrawNewTextLayout(&ui.DrawTextLayoutParams{
         String:     attrstr,
@@ -140,16 +155,12 @@ func (areaHandler) DragBroken(a *ui.Area) {
 }
 
 func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
-
-    // Trigger command only after the key is depressed
-    if ( ke.Up ) {
-        switch ke.Key {
-            case 113: // q
-                ui.Quit()
-            default:
-                //fmt.Println("key press:", ke.Key, ", key Up:", ke.Up)
-        }
-
+    
+    switch ke.Key {
+        case 113: // q
+            ui.Quit()
+        default:
+            fmt.Println("key press:", ke.Key, ", key Up:", ke.Up)
     }
 
     return false // Documentation recommends a false return
@@ -208,7 +219,7 @@ func PreviousClick(area *ui.Area) {
 func setupUI() {
 
     // Define Main Window
-    mainwin := ui.NewWindow("Go Rosary GUI - github.com/mezcel/struct-fmt with andlabs/ui", 800, 500, true)
+    mainwin := ui.NewWindow("Go Rosary GUI - github.com/mezcel/struct-fmt with andlabs/ui", 400, 600, true)
     mainwin.SetMargined(true)
     mainwin.OnClosing(func(*ui.Window) bool {
         mainwin.Destroy()
@@ -223,14 +234,20 @@ func setupUI() {
 
     hbox := ui.NewHorizontalBox()
     hbox.SetPadded(true)
-    mainwin.SetChild(hbox)
+    
+    hboxFont := ui.NewHorizontalBox()
+    hboxFont.SetPadded(true)
+
+    hboxNav := ui.NewHorizontalBox()
+    hboxNav.SetPadded(true)
+
+    hboxProgBar := ui.NewHorizontalBox()
+    hboxProgBar.SetPadded(true)
 
     vbox := ui.NewVerticalBox()
     vbox.SetPadded(true)
-    hbox.Append(vbox, false)
-
-    // Place Text Attributes Label
-    vbox.Append(ui.NewLabel("Text Attributes:"), false)
+    
+    mainwin.SetChild(vbox)
 
     area := ui.NewArea(areaHandler{})
 
@@ -240,14 +257,9 @@ func setupUI() {
         area.QueueRedrawAll()
     })
 
-    // Place Font Button
-    vbox.Append(fontButton, false)
-
     // Text Area Form
-
     form := ui.NewForm()
     form.SetPadded(true)
-    vbox.Append(form, false)
 
     alignment = ui.NewCombobox()
     // note that the items match with the values of the uiDrawTextAlign values
@@ -259,8 +271,13 @@ func setupUI() {
         area.QueueRedrawAll()
     })
 
-    hbox.Append(area, true)
     form.Append("Alignment", alignment, false)
+
+    hboxFont.Append(fontButton, false)
+    hboxFont.Append(form, false)
+    vbox.Append(hboxFont, false)
+    vbox.Append(ui.NewHorizontalSeparator(), false)
+    vbox.Append(area, true)
 
     // Progress Bar
     pbarDecade := ui.NewProgressBar()
@@ -273,39 +290,36 @@ func setupUI() {
     vbox.Append(ui.NewLabel("Bead Navigation:"), false)
 
     // Define Forward Navigation Button
-    btnNext = ui.NewButton("Next >>")
+    btnNext = ui.NewButton(" Next >> ")
     btnNext.OnClicked(func(*ui.Button) {
         NextClick(area)
         UpdateProgressBar(pbarDecade, pbarMystery)
     })
 
     // Define Backward Navigation Button
-    btnPrevious = ui.NewButton("<< Back")
+    btnPrevious = ui.NewButton(" << Back ")
     btnPrevious.OnClicked(func(*ui.Button) {
         PreviousClick(area)
         UpdateProgressBar(pbarDecade, pbarMystery)
     })
 
     // Place Navigation Buttons
-    vbox.Append(btnPrevious, false)
-    vbox.Append(btnNext, false)
+    hboxNav.Append(btnPrevious, false)
+    hboxNav.Append(btnNext, false)
+    vbox.Append(hboxNav, false)
 
     // Place Separator
     vbox.Append(ui.NewHorizontalSeparator(), false)
-
-    // Place Segment Progress
-    vbox.Append(ui.NewLabel("Segment Progress:"), false)
-    vbox.Append(pbarDecade, false)
     
-    // Place Total Progress
-    vbox.Append(ui.NewLabel("Total Progress:"), false)
-	vbox.Append(pbarMystery, false)
+    // Progress Bars
+    /*hboxProgBar.Append(pbarDecade, false)
+    hboxProgBar.Append(pbarMystery, false)
+    vbox.Append(hboxProgBar, false)*/
+    vbox.Append(pbarDecade, false)
+    vbox.Append(pbarMystery, false)
 
     // Place Separator
     vbox.Append(ui.NewHorizontalSeparator(), false)
-
-    // Place Exit Label
-    vbox.Append(ui.NewLabel("Quit:"), false)
 
     // Define Close Button
     btnClose = ui.NewButton("Close Window")
