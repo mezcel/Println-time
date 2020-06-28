@@ -60,6 +60,7 @@ Demo Apps:
 * [animated demo](https://asciinema.org/a/343751)
 
 ---
+---
 
 # Go Development Notes
 

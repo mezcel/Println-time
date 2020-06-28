@@ -14,6 +14,8 @@ Use case demos using the ```struct-fmt``` package.
 
 ### tui demo
 
+[animated demo](#-Animated-TUI-Demo)
+
 ```sh
 ## Install struct-fmt
 go get github.com/mezcel/struct-fmt
@@ -29,6 +31,8 @@ go build main.go -o "myApp.exe"
 ```
 
 ### gui demo
+
+[platform screenshots](#-Screenshots)
 
 ```sh
 ## Install struct-fmt
@@ -77,7 +81,7 @@ Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
 |:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
 
-Animated TUI Demo
+## Animated TUI Demo
 
 [![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)
 
