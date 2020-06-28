@@ -6,10 +6,62 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 	"time"
 
 	structfmt "github.com/mezcel/struct-fmt"
+	"github.com/nsf/termbox-go"
 )
+
+// Get column width of terminal display
+func ReturnTermboxWidth() int {
+	// Requires github.com/nsf/termbox-go import
+
+	if err := termbox.Init(); err != nil {
+		panic(err)
+	}
+
+	charWidth, _ := termbox.Size()
+	termbox.Close()
+
+	return charWidth
+}
+
+// Convert strin into an array of words
+func CentenceArray(inStr string) []string {
+	// requires strings import
+
+	var centenceArr []string = strings.Split(inStr, " ")
+	return centenceArr
+}
+
+// Perform custom word wrapping based on a defined char width
+// Input a string and the number of chars to wrap long strings
+func IndentedWrap(strOrig string, charWidth int) string {
+	var newString string = ""
+	var centenceArr []string = CentenceArray(strOrig)
+	var centenceArrLen int = len(centenceArr)
+
+	var charCount int = 0
+	var i int = 0
+	var wordLength int = 0
+
+	for i = 0; i < centenceArrLen; i++ {
+
+		if charCount < charWidth {
+			newString += centenceArr[i] + " "
+			wordLength = len(centenceArr[i]) + 2 // add the label offset
+		} else {
+			charCount = 0
+			newString += "\n\t\t" + centenceArr[i] + " "
+			wordLength = len(centenceArr[i]) + 7 // add the space and new line formating offset
+		}
+
+		charCount += wordLength
+	}
+
+	return newString
+}
 
 func main() {
 
@@ -69,11 +121,20 @@ func main() {
 		var messageText string = messages.Messages[messageIdx].MesageText
 		var prayerText string = prayers.Prayers[prayerIdx].PrayerText
 
+		// Column char width of a terminal
+		var termWidth int = ReturnTermboxWidth() - 6 // misc width padding
+
 		// View query on cli tui
 		fmt.Println("Decade:\t\t" + decadeName)
 		fmt.Println("Mystery:\t" + mysteryName)
+
+		messageText = IndentedWrap(messageText, termWidth)
 		fmt.Println("Message:\t" + messageText)
+
+		scriptureText = IndentedWrap(scriptureText, termWidth)
 		fmt.Println("Scripture:\t" + scriptureText + "\n")
+
+		prayerText = IndentedWrap(prayerText, termWidth)
 		fmt.Println("Prayer:\t\t" + prayerText)
 
 		// Pause for read display
