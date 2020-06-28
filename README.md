@@ -6,7 +6,10 @@
 * The imported ```.json``` file  must have the same ER Schema used in: [python-curses]( http://github.com/mezcel/python-curses ), [printf-time]( http://github.com/mezcel/printf-time ), [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal), or [electron-container](https://github.com/mezcel/electron-container).
     * Demo Json: [demos/json](demos/json)
 
-Run Use Case  Demos [README](demos)
+Run Use Case Demos 
+* [README](demos)
+* [animated demo](https://asciinema.org/a/343751)
+
 ```sh
 ## Install struct-fmt
 go get github.com/mezcel/struct-fmt
@@ -25,26 +28,21 @@ go run main-onefile.go  ## Tui Rosary without external packages
 ## Install
 
 * Install Go: [download](https://golang.org/dl/)
-* Install this Go package
-```sh
-## Install struct-fmt
-go get github.com/mezcel/struct-fmt
-```
-* Background on Go workspaces: [link](#go-development-notes)
-* The default Go repo location
-    * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
-    * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
-
-* Update an existing package
+* Install the ```struct-fmt``` Go package
     ```sh
+    ## Install struct-fmt
+    go get github.com/mezcel/struct-fmt
+    
+    ## Update an existing package
     go get -u github.com/mezcel/struct-fmt
     ```
+* Background on Go workspaces: [link](#go-development-notes)
 
 ---
 
 ## Code Usage
 
-Use this package in a Go script.
+Use package within in a Go script.
 ```go
 // Import this package into a Go program
 import "github.com/mezcel/struct-fmt"
@@ -53,24 +51,13 @@ import "github.com/mezcel/struct-fmt"
 import structfmt "github.com/mezcel/struct-fmt"
 ```
 
+---
+
 ## Use Case Demo
 Demo Apps:
 * Scripture Rosary Go App: ```./demos/main.go```
-    * [README.md](demos/README.md)
-* Run Demo
-    ```sh
-    ## install my packages
-    go get github.com/mezcel/struct-fmt
-
-    ## cd into demo directory
-    cd $GOPATH/src/github.com/mezcel/struct-fmt/demos/
-
-    ## install an additional package to easily get terminal width 
-    go get github.com/nsf/termbox-go
-
-    ## run script
-    go run main.go
-    ```
+* [README](demos)
+* [animated demo](https://asciinema.org/a/343751)
 
 ---
 
@@ -78,9 +65,13 @@ Demo Apps:
 
 ## Setup a Local Go Workspace
 
+* The default Go repo location
+    * **Win10:** > ```%USERPROFILE%\go\src\github.com\mezcel\struct-fmt```
+    * **Debian:** > ```~/go/src/github.com/mezcel/struct-fmt```
+
 ### Linux (Debian)
 
-Do this if the system did not auto configure for you.
+Do this if ```go get``` did not auto configure for you.
 
 ```sh
 ## Go workspace directory structure
