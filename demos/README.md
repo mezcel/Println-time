@@ -54,11 +54,23 @@ go run main-ui.go
 |```main.go```|Tui Rosary with the ```mezcel/struct-fmt``` package|
 |```main-ui.go```|Gui Rosary with the ```mezcel/struct-fmt``` & the ```andlabs/ui``` package |
 
-### UI Package
+### GUI/Tui Packages
 
-Install the ```andlabs/ui``` go package: [https://github.com/andlabs/ui.git](https://github.com/andlabs/ui)
+* Install the ```andlabs/ui``` go package: [https://github.com/andlabs/ui.git](https://github.com/andlabs/ui)
+* Install the ```nsf/termbox-go``` go package: [https://github.com/nsf/termbox-go.git](https://github.com/andlabs/ui)
+
 ```sh
 ## install the ui package dependency
 go get github.com/andlabs/ui
+
+## install the termbox-go package dependency
+go get github.com/nsf/termbox-go
 ```
+
+# Screenshots
+
+Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
+|win10 (gif)|wsl gtk (gif)|
+|:---:|:---:|
+|![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
 
