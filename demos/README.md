@@ -14,7 +14,7 @@ Use case demos using the ```struct-fmt``` package.
 
 ### tui demo
 
-[animated demo](#-Animated-TUI-Demo)
+[animated demo](#animated-tui-demo)
 
 ```sh
 ## Install struct-fmt
@@ -32,7 +32,7 @@ go build main.go -o "myApp.exe"
 
 ### gui demo
 
-[platform screenshots](#-Screenshots)
+[platform screenshots](#screenshots)
 
 ```sh
 ## Install struct-fmt
