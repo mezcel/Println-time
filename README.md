@@ -59,11 +59,14 @@ Demo Apps:
     * [README.md](demos/README.md)
 * Run Demo
     ```sh
-    ## install package
+    ## install my packages
     go get github.com/mezcel/struct-fmt
 
     ## cd into demo directory
     cd $GOPATH/src/github.com/mezcel/struct-fmt/demos/
+
+    ## install an additional package to easily get terminal width 
+    go get github.com/nsf/termbox-go
 
     ## run script
     go run main.go

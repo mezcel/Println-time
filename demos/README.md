@@ -37,6 +37,9 @@ go get github.com/mezcel/struct-fmt
 ## Install andlabs/ui
 go get github.com/andlabs/ui
 
+## Install nsf/termbox-go
+go get github.com/nsf/termbox-go
+
 ## Run
 go run main-ui.go
 
@@ -73,4 +76,8 @@ Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
 |win10 (gif)|wsl gtk (gif)|
 |:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
+
+Animated TUI Demo
+
+[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)
 
