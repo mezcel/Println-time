@@ -58,10 +58,10 @@ func ReturnTermboxWidth() int {
 		panic(err)
 	}
 
-	charWidth, _ := termbox.Size()
+	readingsWidth, _ := termbox.Size()
 	termbox.Close()
 
-	return charWidth
+	return readingsWidth
 }
 
 // Convert strin into an array of words
@@ -74,7 +74,7 @@ func CentenceArray(inStr string) []string {
 
 // Perform custom word wrapping based on a defined char width
 // Input a string and the number of chars to wrap long strings
-func IndentedWrap(strOrig string, charWidth int) string {
+func IndentedWrap(strOrig string, readingsWidth int) string {
 	var newString string = ""
 	var centenceArr []string = CentenceArray(strOrig)
 	var centenceArrLen int = len(centenceArr)
@@ -85,15 +85,15 @@ func IndentedWrap(strOrig string, charWidth int) string {
 
 	for i = 0; i < centenceArrLen; i++ {
 
-		if charCount < charWidth {
+		if charCount < readingsWidth {
 			newString += centenceArr[i] + " "
-			wordLength = len(centenceArr[i]) + 2 // add the label offset
 		} else {
 			charCount = 0
 			newString += "\n\t\t" + centenceArr[i] + " "
-			wordLength = len(centenceArr[i]) + 7 // add the space and new line formating offset
 		}
 
+		// word with trailing space
+		wordLength = len(centenceArr[i]) + 1
 		charCount += wordLength
 	}
 
@@ -144,9 +144,6 @@ func main() {
 		// clear terminal screen
 		structfmt.Cls()
 
-		// Update position counter
-		//accumulator = structfmt.NextBead(accumulator)
-
 		// Query FKs
 		var decadeIdx int = rosaryBeads.RosaryBeads[accumulator].DecadeIndex
 		var mysteryIdx int = rosaryBeads.RosaryBeads[accumulator].MysteryIndex
@@ -161,26 +158,31 @@ func main() {
 		var messageText string = messages.Messages[messageIdx].MesageText
 		var prayerText string = prayers.Prayers[prayerIdx].PrayerText
 
-		// Column char width of a terminal
-		var termWidth int = ReturnTermboxWidth() - 6 // misc width padding
+		// Set the carrage return length 
+		// based on terminal width and tab space from the query lables.
+		var readingsWidth int = ReturnTermboxWidth() - 21
 
 		// View query on cli tui
+		decadeName = IndentedWrap(decadeName, readingsWidth)
 		fmt.Println("Decade:\t\t" + decadeName)
+
+		mysteryName = IndentedWrap(mysteryName, readingsWidth)
 		fmt.Println("Mystery:\t" + mysteryName)
 
-		messageText = IndentedWrap(messageText, termWidth)
+		messageText = IndentedWrap(messageText, readingsWidth)
 		fmt.Println("Message:\t" + messageText)
 
-		scriptureText = IndentedWrap(scriptureText, termWidth)
+		scriptureText = IndentedWrap(scriptureText, readingsWidth)
 		fmt.Println("Scripture:\t" + scriptureText + "\n")
 
-		prayerText = IndentedWrap(prayerText, termWidth)
+		prayerText = IndentedWrap(prayerText, readingsWidth)
 		fmt.Println("Prayer:\t\t" + prayerText)
 
 		// Pause for read display
 		// Keyboard navigation input
-		fmt.Printf("---\nControlls: [ h = back, l = next, q = quit ] ")
+		fmt.Printf("-------------\t-------------------------------------\nControl Keys:\t( h = back, l = next, q = quit ) ")
 
+		// decorative prompt workarround for win10 terminals
 		if runtime.GOOS == "windows" {
 			fmt.Printf("?: ")
 		}
