@@ -39,6 +39,7 @@ func GetTUIKeyboardKeys(keyPress []byte, accumulator *int) {
 		fmt.Println("Quit")
 		exec.Command("reset").Run()
 		os.Exit(3)
+
 	case "h": // back
 		//*accumulator--
 		*accumulator = structfmt.PreviousBead(*accumulator)
@@ -140,7 +141,7 @@ func main() {
 	SetTtyKeyInput()
 
 	// Main loop
-	for accumulator < 315 {
+	for accumulator <= 315 {
 		// clear terminal screen
 		structfmt.Cls()
 
