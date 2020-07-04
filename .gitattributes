@@ -3,6 +3,7 @@
 *.ps1 eol=crlf
 
 ## Linux/Posix line endins
+*.go eol=lf
 *.sh eol=lf
 *.source eol=lf
 Makefile eol=lf
