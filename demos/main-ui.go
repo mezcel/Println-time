@@ -1,6 +1,7 @@
 /*
  * file         : main-ui.go
  * dependencies : go get github.com/mezcel/struct-fmt
+ 				  go get github.com/nsf/termbox-go
  *                go get github.com/andlabs/ui
  * about:       : Based on andlabs' drawtext.go example script
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-ui.go
@@ -118,7 +119,7 @@ func CentenceArray(inStr string) []string {
 // TUI
 // Perform custom word wrapping based on a defined char width
 // Input a string and the number of chars to wrap long strings
-func IndentedWrap(strOrig string, charWidth int) string {
+func IndentedWrap(strOrig string, readingsWidth int) string {
 	var newString string = ""
 	var centenceArr []string = CentenceArray(strOrig)
 	var centenceArrLen int = len(centenceArr)
@@ -129,15 +130,15 @@ func IndentedWrap(strOrig string, charWidth int) string {
 
 	for i = 0; i < centenceArrLen; i++ {
 
-		if charCount < charWidth {
+		if charCount < readingsWidth {
 			newString += centenceArr[i] + " "
-			wordLength = len(centenceArr[i]) + 2 // add the label offset
 		} else {
 			charCount = 0
 			newString += "\n\t\t" + centenceArr[i] + " "
-			wordLength = len(centenceArr[i]) + 7 // add the space and new line formating offset
 		}
 
+		// word with trailing space
+		wordLength = len(centenceArr[i]) + 1
 		charCount += wordLength
 	}
 
@@ -149,20 +150,21 @@ func PrintTui() {
 	// clear terminal screen
 	structfmt.Cls()
 
-	// Column char width of a terminal
-	var termWidth int = ReturnTermboxWidth() - 6 // misc width padding
+	// Set the carrage return length
+	// based on terminal width and tab space from the query lables.
+	var readingsWidth int = ReturnTermboxWidth() - 21
 
 	// View query on cli tui
 	fmt.Println("Decade:\t\t" + textStructs.DecadeName)
 	fmt.Println("Mystery:\t" + textStructs.MysteryName)
 
-	messageText := IndentedWrap(textStructs.MessageText, termWidth)
+	messageText := IndentedWrap(textStructs.MessageText, readingsWidth)
 	fmt.Println("Message:\t" + messageText)
 
-	scriptureText := IndentedWrap(textStructs.ScriptureText, termWidth)
+	scriptureText := IndentedWrap(textStructs.ScriptureText, readingsWidth)
 	fmt.Println("Scripture:\t" + scriptureText + "\n")
 
-	prayerText := IndentedWrap(textStructs.PrayerText, termWidth)
+	prayerText := IndentedWrap(textStructs.PrayerText, readingsWidth)
 	fmt.Println("Prayer:\t\t" + prayerText)
 
 	fmt.Println("\n---\nPress the Ctrl+C to Exit")

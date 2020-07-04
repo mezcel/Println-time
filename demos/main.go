@@ -1,5 +1,8 @@
-/* file     : main.go
-dependencies: go get github.com/mezcel/struct-fmt */
+/*
+file	    : main.go
+dependencies: go get github.com/mezcel/struct-fmt
+			  go get github.com/nsf/termbox-go
+*/
 
 package main
 
@@ -18,14 +21,11 @@ import (
 
 func SetTtyKeyInput() {
 	if runtime.GOOS == "linux" {
-		fmt.Println("Hello from linux")
-
 		// disable input buffering
 		exec.Command("stty", "-F", "/dev/tty", "cbreak", "min", "1").Run()
 
 		// do not display entered characters on the screen
 		exec.Command("stty", "-F", "/dev/tty", "-echo").Run()
-
 	}
 }
 
@@ -159,7 +159,7 @@ func main() {
 		var messageText string = messages.Messages[messageIdx].MesageText
 		var prayerText string = prayers.Prayers[prayerIdx].PrayerText
 
-		// Set the carrage return length 
+		// Set the carrage return length
 		// based on terminal width and tab space from the query lables.
 		var readingsWidth int = ReturnTermboxWidth() - 21
 
