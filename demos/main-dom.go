@@ -9,10 +9,6 @@
 package main
 
 import (
-	"strings"
-
-	"github.com/nsf/termbox-go"
-
 	"encoding/json"
 	"fmt"
 	"time"
@@ -20,10 +16,8 @@ import (
 	structfmt "github.com/mezcel/struct-fmt"
 
 	"html/template"
-	//"io/ioutil"
 	"log"
 	"net/http"
-	//"regexp"
 )
 
 // Global Vars used for UI text display
@@ -90,84 +84,6 @@ func UpdateDisplayStrings() {
 	textStructs.ScriptureText = Scriptures.Scriptures[scriptureIdx].ScriptureText
 	textStructs.MessageText = Messages.Messages[messageIdx].MesageText
 	textStructs.PrayerText = Prayers.Prayers[prayerIdx].PrayerText
-}
-
-// TUI
-// Get column width of terminal display
-func ReturnTermboxWidth() int {
-	// Requires github.com/nsf/termbox-go
-
-	if err := termbox.Init(); err != nil {
-		panic(err)
-	}
-
-	charWidth, _ := termbox.Size()
-	termbox.Close()
-
-	return charWidth
-}
-
-// TUI
-// Convert strin into an array of words
-func CentenceArray(inStr string) []string {
-	// requires string
-
-	var centenceArr []string = strings.Split(inStr, " ")
-	return centenceArr
-}
-
-// TUI
-// Perform custom word wrapping based on a defined char width
-// Input a string and the number of chars to wrap long strings
-func IndentedWrap(strOrig string, readingsWidth int) string {
-	var newString string = ""
-	var centenceArr []string = CentenceArray(strOrig)
-	var centenceArrLen int = len(centenceArr)
-
-	var charCount int = 0
-	var i int = 0
-	var wordLength int = 0
-
-	for i = 0; i < centenceArrLen; i++ {
-
-		if charCount < readingsWidth {
-			newString += centenceArr[i] + " "
-		} else {
-			charCount = 0
-			newString += "\n\t\t" + centenceArr[i] + " "
-		}
-
-		// word with trailing space
-		wordLength = len(centenceArr[i]) + 1
-		charCount += wordLength
-	}
-
-	return newString
-}
-
-// PrintTui(<args>) will render string display strings in tui
-func PrintTui() {
-	// clear terminal screen
-	structfmt.Cls()
-
-	// Set the carrage return length
-	// based on terminal width and tab space from the query lables.
-	var readingsWidth int = ReturnTermboxWidth() - 21
-
-	// View query on cli tui
-	fmt.Println("Decade:\t\t" + textStructs.DecadeName)
-	fmt.Println("Mystery:\t" + textStructs.MysteryName)
-
-	messageText := IndentedWrap(textStructs.MessageText, readingsWidth)
-	fmt.Println("Message:\t" + messageText)
-
-	scriptureText := IndentedWrap(textStructs.ScriptureText, readingsWidth)
-	fmt.Println("Scripture:\t" + scriptureText + "\n")
-
-	prayerText := IndentedWrap(textStructs.PrayerText, readingsWidth)
-	fmt.Println("Prayer:\t\t" + prayerText)
-
-	fmt.Println("\n---\nPress the Ctrl+C to Exit")
 }
 
 /* *** Html Configurations *** */
