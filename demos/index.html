@@ -5,20 +5,30 @@
     </head>
 
     <body>
-        <p>Go Rosary Server page loaded at: {{.Date}}, {{.Time}}</p>
+
+        <!-- Buttons to refresh the screen without resetting the server -->
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <form action="/Back" method="post">
+                        <center><input type="submit" value="<< back"></center>
+                    </form>
+                </td>
+                <td>
+                    <form action="/Next" method="post">
+                        <center><input type="submit" value="next >>"></center>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
         <hr>
 
-        <!-- Just a button to refresh the screen without resetting the server-->
-        <form action="/Navigate" method="post">
-            <input type="submit" value="next >>">
-        </form>
-        <hr>
-
-        <p> <b>DecadeName:   </b> {{.DecadeName}} </p>
-        <p> <b>MysteryName:  </b> {{.MysteryName}} </p>
-        <p> <b>ScriptureText:</b> {{.ScriptureText}} </p>
-        <p> <b>MessageText:  </b> {{.MessageText}} </p>
-        <p> <b>PrayerText:   </b> {{.PrayerText}} </p>
+        <p> <b>Decade:   </b> {{.DecadeName}} </p>
+        <p> <b>Mystery:  </b> {{.MysteryName}} </p>
+        <p> <b>Scripture:</b> {{.ScriptureText}} </p>
+        <p> <b>Message:  </b> {{.MessageText}} </p>
+        <p> <b>Prayer:   </b> {{.PrayerText}} </p>
 
     </body>
 </html>
