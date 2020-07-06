@@ -14,7 +14,7 @@ Use case demos using the ```struct-fmt``` package.
 
 ### tui demo
 
-[animated demo](#animated-tui-demo)
+[animated terminal demo](#animated-tui-demo)
 
 ```sh
 ## Install struct-fmt
@@ -32,7 +32,7 @@ go build main.go -o "myApp.exe"
 
 ### gui demo
 
-[platform screenshots](#screenshots)
+[native window platform screenshots](#screenshots)
 
 ```sh
 ## Install struct-fmt
@@ -46,9 +46,20 @@ go get github.com/nsf/termbox-go
 
 ## Run
 go run main-ui.go
-
 ```
 > *Note*: ```andlabs/ui``` on Win10 will need gcc. Installing Cygwin or MSYS2 will satify this. Read the ```andlabs/ui``` code comments to see what libraries win10 libs are called if there are still issues.
+
+### html demo
+
+A very wip html web page hosed by a Go server.
+
+```sh
+## Install struct-fmt
+go get github.com/mezcel/struct-fmt
+
+## Run
+go run main-dom.go
+```
 
 ---
 
