@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Go Rosary Wip Demo</title>
+    </head>
+
+    <body>
+
+        <p>Go Rosar Server started at: {{.Date}}, {{.Time}}</p>
+        <hr>
+
+        <!-- Just a button to refresh the screen without resetting the server-->
+        <form action="/Navigate" method="post">
+            <input type="submit" value="next >>">
+        </form>
+        <hr>
+
+        <p>
+            <h4>DecadeName:</h4>
+            {{.DecadeName}}
+        </p>
+
+        <p>
+            <h4>MysteryName:</h4>
+            {{.MysteryName}}
+        </p>
+
+        <p>
+            <h4>ScriptureText:</h4>
+            {{.ScriptureText}}
+        </p>
+
+        <p>
+            <h4>MessageText:</h4>
+            {{.MessageText}}
+        </p>
+
+        <p>
+            <h4>PrayerText:</h4>
+            {{.PrayerText}}
+        </p>
+
+    </body>
+</html>
