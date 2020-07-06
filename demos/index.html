@@ -5,8 +5,7 @@
     </head>
 
     <body>
-
-        <p>Go Rosar Server started at: {{.Date}}, {{.Time}}</p>
+        <p>Go Rosary Server page loaded at: {{.Date}}, {{.Time}}</p>
         <hr>
 
         <!-- Just a button to refresh the screen without resetting the server-->
@@ -15,30 +14,11 @@
         </form>
         <hr>
 
-        <p>
-            <h4>DecadeName:</h4>
-            {{.DecadeName}}
-        </p>
-
-        <p>
-            <h4>MysteryName:</h4>
-            {{.MysteryName}}
-        </p>
-
-        <p>
-            <h4>ScriptureText:</h4>
-            {{.ScriptureText}}
-        </p>
-
-        <p>
-            <h4>MessageText:</h4>
-            {{.MessageText}}
-        </p>
-
-        <p>
-            <h4>PrayerText:</h4>
-            {{.PrayerText}}
-        </p>
+        <p> <b>DecadeName:   </b> {{.DecadeName}} </p>
+        <p> <b>MysteryName:  </b> {{.MysteryName}} </p>
+        <p> <b>ScriptureText:</b> {{.ScriptureText}} </p>
+        <p> <b>MessageText:  </b> {{.MessageText}} </p>
+        <p> <b>PrayerText:   </b> {{.PrayerText}} </p>
 
     </body>
 </html>
