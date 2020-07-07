@@ -2,28 +2,55 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="author" content="Mezcel, mezcel@hotmail.com">
-		<meta name="description" content="Go Webserver Rosary"/>
-		<meta name="url" content="https://github.com/mezcel/struct-fmt">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Mezcel, mezcel@hotmail.com">
+        <meta name="description" content="Go Webserver Rosary"/>
+        <meta name="url" content="https://github.com/mezcel/struct-fmt">
 
-        <title>Go Rosary Wip Demo</title>
+        <title>Go Rosary (Demo)</title>
     </head>
 
+    <script type='text/javascript'>
+        // Button Keybindings
+        document.onkeyup = function(e){
+            switch(e.which) {
+                case 39:        // lt arrow
+                case 76:        // l
+                    document.getElementById( "back" ).click()
+                    break;
+                case 72:        // h
+                case 37:        // rt arrow
+                    document.getElementById( "next" ).click()
+                    break;
+            }
+        }
+    </script>
+
     <body>
-        <center><h2>Go Rosary Wip Demo</h2></center>
+        <center>
+            <h2>Go Rosary (Webserver Demo)</h2>
+            <code>source:</code>
+            <a href="https://github.com/mezcel/struct-fmt" target="_blank">
+                <code>https://github.com/mezcel/struct-fmt</code>
+            </a>
+            <hr>
+        </center>
         <!-- Buttons to refresh the screen without resetting the server -->
         <table style="width:100%">
             <tr>
-                <td>
+                <td align="center">
                     <form action="/Back" method="post">
-                        <center><input type="submit" value="<< back"></center>
+                        <input id="back" type="submit" value="<< back" title="Navigate to the previous bead (h)">
                     </form>
                 </td>
-                <td><center><< Navigation >></center></td>
-                <td>
+                <td align="center">
+                    <form action="/Reset" method="post">
+                        <input id="reset" type="submit" value="Reset" title="Reset back to the beginning">
+                    </form>
+                </td>
+                <td align="center">
                     <form action="/Next" method="post">
-                        <center><input type="submit" value="next >>"></center>
+                        <input id="next" type="submit" value="next >>" title="Navigate to the next bead (l)">
                     </form>
                 </td>
             </tr>
@@ -35,6 +62,7 @@
         <p> <b>Scripture:</b> {{.ScriptureText}} </p>
         <p> <b>Message:  </b> {{.MessageText}} </p>
         <p> <b>Prayer:   </b> {{.PrayerText}} </p>
+
 
     </body>
 </html>
