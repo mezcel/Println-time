@@ -52,6 +52,8 @@ go run main-ui.go
 
 ### Go webserver demo
 
+[web browser ui](#screenshots)
+
 ```sh
 ## Install struct-fmt
 go get github.com/mezcel/struct-fmt
@@ -88,9 +90,9 @@ go get github.com/nsf/termbox-go
 # Screenshots
 
 Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
-|win10 (gif)|wsl gtk (gif)|
-|:---:|:---:|
-|![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
+| win10 (gif) | wsl gtk (gif) | Chrome Browser (gif) |
+|:---:|:---:|:---:|
+|![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|![chrome.gif](screenshots/chrome.gif)|
 
 | CLI Terminal (asciicast) |
 |:---:|

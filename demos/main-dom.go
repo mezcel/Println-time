@@ -153,7 +153,7 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 
 /* *** Main *** */
 func main() {
-
+	fmt.Println("\nStarted main() ...")
 	// Open a jsonFile
 	var jsonPath string = "json/rosaryJSON-nab.json"
 	var byteValue []byte = structfmt.ReturnByteValue(jsonPath)
@@ -188,6 +188,6 @@ func main() {
 	// Server at port
 	fmt.Println("\n\t- Go Server is running the main-dom.go app ...")
 	fmt.Println("\t- Open a web browser and navigate to \"localhost:8080\".")
-	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )")
+	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )\n")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
