@@ -50,9 +50,7 @@ go run main-ui.go
 
 > *Note*: ```andlabs/ui``` on Win10 will need gcc. Installing Cygwin or MSYS2 will satify this. Read the ```andlabs/ui``` code comments to see what libraries win10 libs are called if there are still issues.
 
-### html demo
-
-[Go html web sever](#screenshots)
+### Go webserver demo
 
 ```sh
 ## Install struct-fmt
@@ -72,7 +70,7 @@ go run main-dom.go
 |```functions.go```|App Functions|
 |```main.go```|Tui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` packages|
 |```main-ui.go```|Gui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` & the ```andlabs/ui``` packages |
-|```main-dom.go```|Gui Rosary with just the ```mezcel/struct-fmt``` packages |
+|```main-dom.go```|Webserver Rosary with just the ```mezcel/struct-fmt``` packages |
 
 ### GUI/Tui Packages
 
@@ -93,10 +91,6 @@ Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
 |win10 (gif)|wsl gtk (gif)|
 |:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
-
-| Chrome on Go webserver (gif) |
-|:---:|
-|![chrome.gif](./screenshots/chrome.gif)|
 
 | CLI Terminal (asciicast) |
 |:---:|

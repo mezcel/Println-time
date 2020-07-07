@@ -9,6 +9,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 
 	structfmt "github.com/mezcel/struct-fmt"
@@ -166,5 +167,6 @@ func main() {
 	http.HandleFunc("/favicon.ico", faviconHandler)
 
 	// Server at port
+	fmt.Println("Open a web browser and navigate to \"localhost:8080\"")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

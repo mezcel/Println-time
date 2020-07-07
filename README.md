@@ -7,8 +7,8 @@
     * Demo Json: [demos/json](demos/json)
 
 Run Use Case Demos 
-* [README](demos)
-* [animated demo](https://asciinema.org/a/343751)
+* [Demo README](demos)
+* [cli animated demo](https://asciinema.org/a/343751)
 
 ```sh
 ## Install struct-fmt
@@ -20,7 +20,7 @@ cd demos/
 ## launch scripts
 go run main.go          ## Tui Rosary with mezcel/struct-fmt package
 go run main-ui.go       ## Gui Rosary with mezcel/struct-fmt & andlabs/ui package
-go run main-onefile.go  ## Tui Rosary without external packages
+go run main-dom.go      ## Go Webserver web page
 ```
 
 ---
