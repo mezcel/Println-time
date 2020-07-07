@@ -7,20 +7,20 @@
         <meta name="description" content="Go Webserver Rosary"/>
         <meta name="url" content="https://github.com/mezcel/struct-fmt">
 
-        <title>Go Rosary (Demo)</title>
+        <title>Go Rosary (WIP Demo)</title>
     </head>
 
     <script type='text/javascript'>
-        // Button Keybindings
+        // Button Key bindings
         document.onkeyup = function(e){
             switch(e.which) {
-                case 39:        // lt arrow
+                case 39:        // rt arrow
                 case 76:        // l
-                    document.getElementById( "back" ).click()
+                    document.getElementById( "next" ).click()
                     break;
                 case 72:        // h
-                case 37:        // rt arrow
-                    document.getElementById( "next" ).click()
+                case 37:        // lt arrow
+                    document.getElementById( "back" ).click()
                     break;
             }
         }
@@ -35,7 +35,8 @@
             </a>
             <hr>
         </center>
-        <!-- Buttons to refresh the screen without resetting the server -->
+
+        <!-- Buttons to refresh the screen to display updated server variable values -->
         <table style="width:100%">
             <tr>
                 <td align="center">
@@ -49,6 +50,7 @@
                     </form>
                 </td>
                 <td align="center">
+                    <!-- <a href="./Next">Next</a> -->
                     <form action="/Next" method="post">
                         <input id="next" type="submit" value="next >>" title="Navigate to the next bead (l)">
                     </form>
@@ -57,11 +59,10 @@
         </table>
 
         <hr>
-        <p> <b>Decade:   </b> {{.DecadeName}} </p>
-        <p> <b>Mystery:  </b> {{.MysteryName}} </p>
-        <p> <b>Scripture:</b> {{.ScriptureText}} </p>
-        <p> <b>Message:  </b> {{.MessageText}} </p>
-        <p> <b>Prayer:   </b> {{.PrayerText}} </p>
+        <p> <b>Mystery: </b> ( {{.MysteryPercent}} of 50 ) <br> &emsp; {{.MysteryName}} <br> &emsp; <i> {{.MessageText}} </i> </p>
+        <p> <b>Decade:   </b> ( {{.SmallbeadPercent}}0% ) <br> &emsp; {{.DecadeName}} </p>
+        <p> <b>Scripture:</b> <br> &emsp; {{.ScriptureText}} </p>
+        <p> <b>Prayer:   </b> <br> &emsp; {{.PrayerText}} </p>
 
 
     </body>
