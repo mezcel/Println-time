@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="author" content="Mezcel, mezcel@hotmail.com">
+		<meta name="description" content="Go Webserver Rosary"/>
+		<meta name="url" content="https://github.com/mezcel/struct-fmt">
+
         <title>Go Rosary Wip Demo</title>
     </head>
 
     <body>
-
+        <center><h2>Go Rosary Wip Demo</h2></center>
         <!-- Buttons to refresh the screen without resetting the server -->
         <table style="width:100%">
             <tr>
@@ -14,6 +20,7 @@
                         <center><input type="submit" value="<< back"></center>
                     </form>
                 </td>
+                <td><center><< Naviation >></center></td>
                 <td>
                     <form action="/Next" method="post">
                         <center><input type="submit" value="next >>"></center>
@@ -23,7 +30,6 @@
         </table>
 
         <hr>
-
         <p> <b>Decade:   </b> {{.DecadeName}} </p>
         <p> <b>Mystery:  </b> {{.MysteryName}} </p>
         <p> <b>Scripture:</b> {{.ScriptureText}} </p>

@@ -47,11 +47,12 @@ go get github.com/nsf/termbox-go
 ## Run
 go run main-ui.go
 ```
+
 > *Note*: ```andlabs/ui``` on Win10 will need gcc. Installing Cygwin or MSYS2 will satify this. Read the ```andlabs/ui``` code comments to see what libraries win10 libs are called if there are still issues.
 
 ### html demo
 
-A very wip html web page hosed by a Go server.
+[Go html web sever](#screenshots)
 
 ```sh
 ## Install struct-fmt
@@ -71,6 +72,7 @@ go run main-dom.go
 |```functions.go```|App Functions|
 |```main.go```|Tui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` packages|
 |```main-ui.go```|Gui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` & the ```andlabs/ui``` packages |
+|```main-dom.go```|Gui Rosary with just the ```mezcel/struct-fmt``` packages |
 
 ### GUI/Tui Packages
 
@@ -92,7 +94,10 @@ Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
 |:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|
 
-## Animated TUI Demo
+| Chrome on Go webserver (gif) |
+|:---:|
+|![chrome.gif](./screenshots/chrome.gif)|
 
-[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)
-
+| CLI Terminal (asciicast) |
+|:---:|
+|[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)|
