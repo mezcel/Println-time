@@ -9,8 +9,8 @@
 ### Use Case Demos
 
 * [Demo README](demos/README.md)
-* [Screenshots](screenshots/README.md)
-* [Outdated cli animated demo](https://asciinema.org/a/343751)[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)
+* [Screenshots](demos/screenshots/README.md)
+* [Outdated Animated Termianl demo](https://asciinema.org/a/343751)
 
 ---
 
@@ -27,11 +27,11 @@
 
 ## Code Usage
 
-Use package within in a Go script.
-```go
-// Import this package into a Go program
-import "github.com/mezcel/struct-fmt"
+* Include in a Go script.
+    ```go
+    // Import this package into a Go program
+    import "github.com/mezcel/struct-fmt"
 
-// or
-import structfmt "github.com/mezcel/struct-fmt"
-```
+    // or
+    import structfmt "github.com/mezcel/struct-fmt"
+    ```

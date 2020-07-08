@@ -2,10 +2,11 @@
 
 ## main-ui.go
 
-```go
-// go get github.com/andlabs/ui
-include "github.com/andlabs/ui"
-```
+* ui package
+    ```go
+    // go get github.com/andlabs/ui
+    include "github.com/andlabs/ui"
+    ```
 
 Native desktop environment client window
 * Win10 DWM

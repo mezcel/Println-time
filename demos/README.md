@@ -30,10 +30,10 @@ go run main-dom.go      ## Go Webserver web page
 
 Gif rendered screenshots. These may not be the latest version.
 
-| win10 (main-ui.go) | wsl gtk (main-ui.go) | Chrome Browser (main-dom.go) |
+| main-ui.go (win10) | main-ui.go (GTK) | main-dom.go (chromium) |
 |:---:|:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|![chrome.gif](screenshots/chrome.gif)|
 
-| CLI Terminal (main.go) |
+| main.go (CLI Terminal) |
 |:---:|
 |[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)|
