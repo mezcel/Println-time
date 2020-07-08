@@ -10,11 +10,8 @@
 package main
 
 import (
-	"strings"
-
 	"github.com/andlabs/ui"
 	_ "github.com/andlabs/ui/winmanifest"
-	"github.com/nsf/termbox-go"
 
 	"encoding/json"
 	"fmt"
@@ -94,88 +91,10 @@ func UpdateDisplayStrings() {
 	textStructs.PrayerText = Prayers.Prayers[prayerIdx].PrayerText
 }
 
-// TUI
-// Get column width of terminal display
-func ReturnTermboxWidth() int {
-	// Requires github.com/nsf/termbox-go
-
-	if err := termbox.Init(); err != nil {
-		panic(err)
-	}
-
-	charWidth, _ := termbox.Size()
-	termbox.Close()
-
-	return charWidth
-}
-
-// TUI
-// Convert strin into an array of words
-func CentenceArray(inStr string) []string {
-	// requires string
-
-	var centenceArr []string = strings.Split(inStr, " ")
-	return centenceArr
-}
-
-// TUI
-// Perform custom word wrapping based on a defined char width
-// Input a string and the number of chars to wrap long strings
-func IndentedWrap(strOrig string, readingsWidth int) string {
-	var newString string = ""
-	var centenceArr []string = CentenceArray(strOrig)
-	var centenceArrLen int = len(centenceArr)
-
-	var charCount int = 0
-	var i int = 0
-	var wordLength int = 0
-
-	for i = 0; i < centenceArrLen; i++ {
-
-		if charCount < readingsWidth {
-			newString += centenceArr[i] + " "
-		} else {
-			charCount = 0
-			newString += "\n\t\t" + centenceArr[i] + " "
-		}
-
-		// word with trailing space
-		wordLength = len(centenceArr[i]) + 1
-		charCount += wordLength
-	}
-
-	return newString
-}
-
-// PrintTui(<args>) will render string display strings in tui
-func PrintTui() {
-	// clear terminal screen
-	structfmt.Cls()
-
-	// Set the carrage return length
-	// based on terminal width and tab space from the query lables.
-	var readingsWidth int = ReturnTermboxWidth() - 21
-
-	// View query on cli tui
-	fmt.Println("Decade:\t\t" + textStructs.DecadeName)
-	fmt.Println("Mystery:\t" + textStructs.MysteryName)
-
-	messageText := IndentedWrap(textStructs.MessageText, readingsWidth)
-	fmt.Println("Message:\t" + messageText)
-
-	scriptureText := IndentedWrap(textStructs.ScriptureText, readingsWidth)
-	fmt.Println("Scripture:\t" + scriptureText + "\n")
-
-	prayerText := IndentedWrap(textStructs.PrayerText, readingsWidth)
-	fmt.Println("Prayer:\t\t" + prayerText)
-
-	fmt.Println("\n---\nPress the Ctrl+C to Exit")
-}
-
 /* *** GUI Configurations *** */
 
-// Apply append decorated string
-func appendWithAttributes(what string, attrs ...ui.Attribute) {
+// Append decorated string
+func AppendWithAttributes(what string, attrs ...ui.Attribute) {
 	start := len(attrstr.String())
 	end := start + len(what)
 	attrstr.AppendUnattributed(what)
@@ -191,15 +110,15 @@ func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
 
 	// Formatted display string
 	attrstr = ui.NewAttributedString("")
-	appendWithAttributes("Decade:\n\t", ui.TextWeightBold)
+	AppendWithAttributes("Decade:\n\t", ui.TextWeightBold)
 	attrstr.AppendUnattributed(textStructs.DecadeName)
-	appendWithAttributes("\n\nMystery:\n\t", ui.TextWeightBold)
+	AppendWithAttributes("\n\nMystery:\n\t", ui.TextWeightBold)
 	attrstr.AppendUnattributed(textStructs.MysteryName)
-	appendWithAttributes("\n\nMessage:\n\t", ui.TextWeightBold)
+	AppendWithAttributes("\n\nMessage:\n\t", ui.TextWeightBold)
 	attrstr.AppendUnattributed(textStructs.MessageText)
-	appendWithAttributes("\n\nScripture:\n\t", ui.TextWeightBold)
+	AppendWithAttributes("\n\nScripture:\n\t", ui.TextWeightBold)
 	attrstr.AppendUnattributed(textStructs.ScriptureText)
-	appendWithAttributes("\n\nPrayer:\n\t", ui.TextWeightBold)
+	AppendWithAttributes("\n\nPrayer:\n\t", ui.TextWeightBold)
 	attrstr.AppendUnattributed(textStructs.PrayerText)
 
 	tl := ui.DrawNewTextLayout(&ui.DrawTextLayoutParams{
@@ -278,7 +197,6 @@ func NextClick(area *ui.Area) {
 	textStructs.Position = structfmt.NextBead(textStructs.Position)
 	UpdateDisplayStrings()
 	area.QueueRedrawAll()
-	PrintTui()
 }
 
 // Backward Navigation
@@ -286,11 +204,10 @@ func PreviousClick(area *ui.Area) {
 	textStructs.Position = structfmt.PreviousBead(textStructs.Position)
 	UpdateDisplayStrings()
 	area.QueueRedrawAll()
-	PrintTui()
 }
 
-// setupUI() is the Native GUI layout design
-func setupUI() {
+// SetupUI() is the Native GUI layout design
+func SetupUI() {
 
 	// Define Main Window
 	mainwin := ui.NewWindow("Golang Rosary GUI", 400, 600, true)
@@ -400,9 +317,9 @@ func setupUI() {
 
 	// Update position counter and global text variables
 	UpdateDisplayStrings()
-	PrintTui()
 
 	mainwin.Show()
+	fmt.Println("\tmain-ui.go is running a native desktop manager window...")
 }
 
 /* *** Main *** */
@@ -428,7 +345,7 @@ func main() {
 	// Initial starting position based on which day of the week it is
 	textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
 
-	ui.Main(setupUI)
+	ui.Main(SetupUI)
 
-	fmt.Println("done")
+	fmt.Println("Done.\n\tApp is terminated.")
 }
