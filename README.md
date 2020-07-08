@@ -8,7 +8,8 @@
 
 ### Use Case Demos
 
-* [Demo README](demos)
+* [Demo README](demos/README.md)
+* [Screenshots](screenshots/README.md)
 * [Outdated cli animated demo](https://asciinema.org/a/343751)[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)
 
 ---
