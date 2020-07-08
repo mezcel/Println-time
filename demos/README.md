@@ -12,88 +12,28 @@ Use case demos using the ```struct-fmt``` package.
 
 ## Run Demos
 
-### tui demo
-
-[animated terminal demo](#animated-tui-demo)
-
 ```sh
-## Install struct-fmt
-go get github.com/mezcel/struct-fmt
+## Navigate into the repo's demo directory
+cd demos/
 
-## Install nsf/termbox-go
-go get github.com/nsf/termbox-go
+## Install prerequisites
+./install.sh
 
-## Run
-go run main.go
-
-## Build
-go build main.go -o "myApp.exe"
+## launch one of the following Go scripts
+go run main.go          ## Cli/Tui Rosary with mezcel/struct-fmt package
+go run main-ui.go       ## Gui Rosary with mezcel/struct-fmt & andlabs/ui package
+go run main-dom.go      ## Go Webserver web page
 ```
-
-### gui demo
-
-[native window platform screenshots](#screenshots)
-
-```sh
-## Install struct-fmt
-go get github.com/mezcel/struct-fmt
-
-## Install andlabs/ui
-go get github.com/andlabs/ui
-
-## Install nsf/termbox-go
-go get github.com/nsf/termbox-go
-
-## Run
-go run main-ui.go
-```
-
-> *Note*: ```andlabs/ui``` on Win10 will need gcc. Installing Cygwin or MSYS2 will satify this. Read the ```andlabs/ui``` code comments to see what libraries win10 libs are called if there are still issues.
-
-### Go webserver demo
-
-[web browser ui](#screenshots)
-
-```sh
-## Install struct-fmt
-go get github.com/mezcel/struct-fmt
-
-## Run
-go run main-dom.go
-```
-
 ---
 
-## Demo App Scripts:
+## Screenshots (Outdated)
 
-| script name | about |
-| --- | --- |
-|```structs.go```|Go Structs based on Json|
-|```functions.go```|App Functions|
-|```main.go```|Tui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` packages|
-|```main-ui.go```|Gui Rosary with the ```mezcel/struct-fmt``` & ```nsf/termbox-go``` & the ```andlabs/ui``` packages |
-|```main-dom.go```|Webserver Rosary with just the ```mezcel/struct-fmt``` packages |
+Gif rendered screenshots. These may not be the latest version.
 
-### GUI/Tui Packages
-
-* Native GUI window: [https://github.com/andlabs/ui.git](https://github.com/andlabs/ui)
-* Easily get cross platform terminal specs: [https://github.com/nsf/termbox-go.git](https://github.com/andlabs/ui)
-
-```sh
-## install the ui package dependency
-go get github.com/andlabs/ui
-
-## install the termbox-go package dependency
-go get github.com/nsf/termbox-go
-```
-
-# Screenshots
-
-Plugin: [github.com/andlabs/ui](https://github.com/andlabs/ui)
-| win10 (gif) | wsl gtk (gif) | Chrome Browser (gif) |
+| win10 (main-ui.go) | wsl gtk (main-ui.go) | Chrome Browser (main-dom.go) |
 |:---:|:---:|:---:|
 |![win10.gif](./screenshots/win10.gif)|![wsl-gtk.gif](./screenshots/wsl-gtk.gif)|![chrome.gif](screenshots/chrome.gif)|
 
-| CLI Terminal (asciicast) |
+| CLI Terminal (main.go) |
 |:---:|
 |[![asciicast](https://asciinema.org/a/343751.svg)](https://asciinema.org/a/343751)|
