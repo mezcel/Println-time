@@ -55,7 +55,7 @@
             <div class="w3-panel w3-card">
                 <div class="w3-row">
                     <div class="w3-col s2 w3-center"><h4>Decade:</h4></div>
-                    <div class="w3-col s10"><p>{{.DecadeName}}</p></div>
+                    <div class="w3-col s10"><p>{{.DecadeName}}</p><i>{{.MessageText}}</i></div>
                 </div>
             </div>
             <div class="w3-panel w3-card w3-ios-background">
@@ -74,7 +74,9 @@
 
         <!-- Footer -->
         <div class="w3-display-bottomright">
-            <p class="w3-container">( segment: {{.SmallbeadPercent}}0% ) ( total: {{.MysteryPercent}} of 50 )</p>
+            <div class="w3-container">
+                ( segment: <b>{{.SmallbeadPercent}}0%</b> ) ( total: <b>{{.MysteryPercent}}</b> of 50 )
+            </div>
         </div>
 
     </body>
