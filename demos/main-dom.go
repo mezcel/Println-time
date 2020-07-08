@@ -157,21 +157,21 @@ func Reset(w http.ResponseWriter, r *http.Request) {
 }
 
 // Favicon external resource
-func faviconHandler(w http.ResponseWriter, r *http.Request) {
+func FaviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/img/favicon.ico")
 }
 
 // Style external resource
-func cssHandler(w http.ResponseWriter, r *http.Request) {
+func CssHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/css/w3.css")
 }
 
-func cssHandler2(w http.ResponseWriter, r *http.Request) {
+func CssHandler2(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/css/w3-colors-ios.css")
 }
 
 // Script external resource
-func jsHandler(w http.ResponseWriter, r *http.Request) {
+func JsHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/js/myScript.js")
 }
 
@@ -202,14 +202,14 @@ func main() {
 	http.HandleFunc("/", IndexPage)
 
 	// favicon
-	http.HandleFunc("/img/favicon.ico", faviconHandler)
+	http.HandleFunc("/img/favicon.ico", FaviconHandler)
 
 	// css
-	http.HandleFunc("/css/w3.css", cssHandler)
-	http.HandleFunc("/css/w3-colors-ios.css", cssHandler2)
+	http.HandleFunc("/css/w3.css", CssHandler)
+	http.HandleFunc("/css/w3-colors-ios.css", CssHandler2)
 
 	// js
-	http.HandleFunc("/js/myScript.js", jsHandler)
+	http.HandleFunc("/js/myScript.js", JsHandler)
 
 	// Navigation Page Refresh
 	http.HandleFunc("/Next", Next)
