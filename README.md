@@ -6,11 +6,13 @@
 * The imported ```.json``` file  must have the same ER Schema used in: [python-curses]( http://github.com/mezcel/python-curses ), [printf-time]( http://github.com/mezcel/printf-time ), [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal), or [electron-container](https://github.com/mezcel/electron-container).
     * Demo Json: [demos/json](demos/json)
 
-### Use Case Demos
+### Use Case / Demonstration
 
 * [Demo README](demos/README.md)
+    * [Terminal](https://asciinema.org/a/343751)
+    * Web Server with Webpage
+    * Native desktop window UI
 * [Screenshots](demos/screenshots/README.md)
-* [Outdated Animated Termianl demo](https://asciinema.org/a/343751)
 
 ---
 

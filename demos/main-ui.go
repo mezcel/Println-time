@@ -37,6 +37,7 @@ type ReadingsText struct {
 }
 
 var (
+	// UI Variables
 	fontButton *ui.FontButton
 	alignment  *ui.Combobox
 
@@ -51,6 +52,7 @@ var (
 	lblMessageText   *ui.Label
 	lblPrayerText    *ui.Label
 
+	// Display string Struct
 	textStructs ReadingsText
 
 	// Global struct db variables
@@ -234,6 +236,7 @@ func (areaHandler) KeyEvent(a *ui.Area, ke *ui.AreaKeyEvent) (handled bool) {
 	return false // Documentation recommends a false return
 }
 
+// Segment Progressbar Value
 func ProgressSegmentInteger(inputInt int, loopBody int) int {
 	var intReturn int = 0
 
@@ -242,7 +245,7 @@ func ProgressSegmentInteger(inputInt int, loopBody int) int {
 		intReturn = inputInt * 10
 	} else {
 		// intro
-		intReturn = (inputInt * 10) + 30
+		intReturn = (inputInt * 100) / 7
 	}
 
 	if intReturn > 100 {
@@ -252,6 +255,7 @@ func ProgressSegmentInteger(inputInt int, loopBody int) int {
 	return intReturn
 }
 
+// Total Progressbar Value
 func ProgressTotalInteger(inputInt int) int {
 	var intReturn int = 0
 	intReturn = inputInt * 2
@@ -259,6 +263,7 @@ func ProgressTotalInteger(inputInt int) int {
 	return intReturn
 }
 
+// Update the progress bar display
 func UpdateProgressBar(pbarDecade *ui.ProgressBar, pbarMystery *ui.ProgressBar) {
 
 	decadeProgress := ProgressSegmentInteger(textStructs.SmallbeadPercent, textStructs.LoopBody)
@@ -268,6 +273,7 @@ func UpdateProgressBar(pbarDecade *ui.ProgressBar, pbarMystery *ui.ProgressBar) 
 	pbarMystery.SetValue(mysteryProgress)
 }
 
+// Forward Navigation
 func NextClick(area *ui.Area) {
 	textStructs.Position = structfmt.NextBead(textStructs.Position)
 	UpdateDisplayStrings()
@@ -275,6 +281,7 @@ func NextClick(area *ui.Area) {
 	PrintTui()
 }
 
+// Backward Navigation
 func PreviousClick(area *ui.Area) {
 	textStructs.Position = structfmt.PreviousBead(textStructs.Position)
 	UpdateDisplayStrings()
