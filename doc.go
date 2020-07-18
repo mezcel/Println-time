@@ -44,6 +44,4 @@
        import structfmt "github.com/mezcel/struct-fmt"
        ```
 */
-
-// doc.go is my godoc.org readme file
 package structfmt
