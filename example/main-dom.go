@@ -2,7 +2,7 @@
  * file         : main-dom.go
  * dependencies : go get github.com/mezcel/struct-fmt
  * about:       : Web browser dom web page hosed by go server
- * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-dom.go
+ * git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main-dom.go
  * */
 
 package main

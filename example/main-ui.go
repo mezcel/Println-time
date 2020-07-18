@@ -1,10 +1,9 @@
 /*
  * file         : main-ui.go
  * dependencies : go get github.com/mezcel/struct-fmt
- 				  go get github.com/nsf/termbox-go
  *                go get github.com/andlabs/ui
  * about:       : Based on andlabs' drawtext.go example script
- * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-ui.go
+ * git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main-ui.go
  * */
 
 package main
