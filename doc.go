@@ -1,7 +1,5 @@
 /*
-   struct-fmt
 
-   This is a Go package used to port Scripture Rosary data from a .json file into Go structs.
 
    About
 
@@ -11,20 +9,17 @@
        [python-curses]( http://github.com/mezcel/python-curses )
        [printf-time]( http://github.com/mezcel/printf-time )
        [jq-tput-terminal](https://github.com/mezcel/jq-tput-terminal)
-       [electron-container](https://github.com/mezcel/electron-container).
-       * Demo Json: [demos/json](demos/json)
+       [electron-container](https://github.com/mezcel/electron-container)
+
+       Example Json: https://raw.githubusercontent.com/mezcel/struct-fmt/master/example/json/rosaryJSON-nab.json
 
 
-   Use Case / Demonstration
+   Examples
 
    * [Demo README](example/README.md)
        * [Terminal](https://asciinema.org/a/343751)
        * Web Server with Webpage
        * Native desktop window UI
-   * [Screenshots](example/screenshots/README.md)
-
-
-   ---
 
 
    Install
@@ -36,7 +31,6 @@
        go get github.com/mezcel/struct-fmt
 
        ```
-   ---
 
 
    Code Usage
@@ -50,4 +44,6 @@
        import structfmt "github.com/mezcel/struct-fmt"
        ```
 */
+
+// doc.go is my godoc.org readme file
 package structfmt
