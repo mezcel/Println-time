@@ -5,7 +5,7 @@
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-dom.go
  * */
 
-package example
+package main
 
 import (
 	"encoding/json"

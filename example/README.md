@@ -1,4 +1,4 @@
-# demo
+# example use cases
 
 Use case demos using the ```struct-fmt``` package.
 
@@ -14,7 +14,7 @@ Use case demos using the ```struct-fmt``` package.
 
 ```sh
 ## Navigate into the repo's demo directory
-cd demos/
+cd example/
 
 ## Install prerequisites
 ./install.sh

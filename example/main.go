@@ -4,7 +4,7 @@ dependencies: go get github.com/mezcel/struct-fmt
               go get github.com/nsf/termbox-go
 */
 
-package example
+package main
 
 import (
 	"encoding/json"

@@ -7,7 +7,7 @@
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/demos/main-ui.go
  * */
 
-package example
+package main
 
 import (
 	"github.com/andlabs/ui"
