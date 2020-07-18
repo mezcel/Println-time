@@ -1,5 +1,8 @@
 /*
 
+A json to struct conversion package.
+
+
 About
 
 * This is a Go package used to port Scripture Rosary data from a .json file into Go structs.
@@ -15,7 +18,7 @@ About
 
 Examples
 
-* [Demo README](example/README.md)
+* [README](https://github.com/mezcel/struct-fmt/tree/master/example)
     * [Terminal](https://asciinema.org/a/343751)
     * Web Server with Webpage
     * Native desktop window UI
@@ -24,6 +27,7 @@ Examples
 Install
 
 * Install Go: [download](https://golang.org/dl/)
+
 * Install the struct-fmt Go package
     ```sh
     ## Install struct-fmt
