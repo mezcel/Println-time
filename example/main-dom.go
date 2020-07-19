@@ -10,13 +10,17 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
+	"log"
+	"net/http"
+
+	"github.com/PuerkitoBio/goquery"
 	structfmt "github.com/mezcel/struct-fmt"
 
 	"html/template"
-	"log"
-	"net/http"
 )
 
 // Global Vars used for UI text display
@@ -31,6 +35,9 @@ type ReadingsText struct {
 	LoopBody         int
 	SmallbeadPercent int
 	MysteryPercent   int
+
+	// Web Scrape strings
+	SaintsList string
 }
 
 var (
@@ -156,6 +163,153 @@ func Reset(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// Load Glorious
+func Glorious(w http.ResponseWriter, r *http.Request) {
+
+	// Initial starting position based on mystery
+	var WeekdayNo int = 0
+	textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
+
+	// Update global struct vars
+	UpdateDisplayStrings()
+
+	// Update Html Page strings with struct vars
+	UpdateIndexPageVars(w)
+
+}
+
+// Load Joyful
+func Joyful(w http.ResponseWriter, r *http.Request) {
+
+	// Initial starting position based on mystery
+	var WeekdayNo int = 1
+	textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
+
+	// Update global struct vars
+	UpdateDisplayStrings()
+
+	// Update Html Page strings with struct vars
+	UpdateIndexPageVars(w)
+
+}
+
+// Load Sorrowful
+func Sorrowful(w http.ResponseWriter, r *http.Request) {
+
+	// Initial starting position based on mystery
+	var WeekdayNo int = 6
+	textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
+
+	// Update global struct vars
+	UpdateDisplayStrings()
+
+	// Update Html Page strings with struct vars
+	UpdateIndexPageVars(w)
+
+}
+
+// Load Luminous
+func Luminous(w http.ResponseWriter, r *http.Request) {
+
+	// Initial starting position based on mystery
+	var WeekdayNo int = 4
+	textStructs.Position = structfmt.ReturnStartPosition(WeekdayNo)
+
+	// Update global struct vars
+	UpdateDisplayStrings()
+
+	// Update Html Page strings with struct vars
+	UpdateIndexPageVars(w)
+
+}
+
+// Web scrape commemorative saints of the day
+func Saints(w http.ResponseWriter, r *http.Request) {
+	var (
+		catholicsaintsUrl string = "https://catholicsaints.info/"
+		dateUrl           string
+	)
+
+	_, month, day := time.Now().Date()
+	var m string = month.String()
+	dateUrl = strconv.Itoa(day) + "-" + strings.ToLower(m)
+
+	saintsList, err := GetDaySaints(catholicsaintsUrl + dateUrl)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	textStructs.SaintsList = saintsList
+
+	// Load saints list in tty
+	// fmt.Println("\nList of saints for", year, month, day, "\n\tfrom: ", catholicsaintsUrl+dateUrl, "\n")
+	// fmt.Println(saintsList)
+
+	// Load saints.html
+	t, err := template.ParseFiles("html/saints.html") //parse the html file index.html
+	if err != nil {                                   // if there is an error
+		log.Print("template parsing error: ", err) // log it
+	}
+
+	err = t.Execute(w, textStructs) //execute the template
+	if err != nil {                 // if there is an error
+		log.Print("template executing error: ", err) //log it
+	}
+
+}
+
+// https://catholicsaints.info/1-january/
+func GetDaySaints(url string) (string, error) {
+	var (
+		// List of saints string
+		saintsUl string = "List Source: " + url + "\n"
+
+		// both combined columns in table
+		cssPath string //= "html body div#page div#wrapper div#content div div.postentry div table ul"
+
+		// left col
+		cssPath1 string = "div > div:nth-child(1) > table:nth-child(2) > tbody > tr:nth-child(1) > td:nth-child(1) > ul > li > a"
+
+		// right col
+		cssPath2 string = "div > div:nth-child(1) > table:nth-child(2) > tbody > tr:nth-child(1) > td:nth-child(2) > ul > li > a"
+	)
+
+	// Get the HTML
+	resp, err := http.Get(url)
+	if err != nil {
+		return "", err
+	}
+
+	// Convert HTML into goquery document
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	// Left Column list of saints
+	cssPath = cssPath1
+	var ret string
+	var e error
+	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
+		ret, e = s.Html()
+		saintsUl += "St. " + ret + ", "
+		//doc.Find("#pSaints").AppendHtml(ret)
+	})
+
+	// Right column list of saints
+	cssPath = cssPath2
+	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
+		ret, e = s.Html()
+		saintsUl += "St. " + ret + ", "
+		//doc.Find("#pSaints").AppendHtml(ret)
+	})
+
+	//doc.Find("#Saints").AppendHtml(ret)
+
+	return saintsUl, nil
+}
+
 // Favicon external resource
 func FaviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/img/favicon.ico")
@@ -214,7 +368,14 @@ func main() {
 	// Navigation Page Refresh
 	http.HandleFunc("/Next", Next)
 	http.HandleFunc("/Back", Back)
+
+	// Menu options
 	http.HandleFunc("/Reset", Reset)
+	http.HandleFunc("/Joyful", Joyful)
+	http.HandleFunc("/Luminous", Luminous)
+	http.HandleFunc("/Sorrowful", Sorrowful)
+	http.HandleFunc("/Glorious", Glorious)
+	http.HandleFunc("/Saints", Saints)
 
 	// Server at port
 	fmt.Println("\n\t- Go Server is running the main-dom.go app ...")
