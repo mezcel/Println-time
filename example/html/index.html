@@ -31,15 +31,15 @@
 
             <div class="w3-row">
                 <div class="w3-col s3 w3-center"><p>
-                    <a id="back" href="./Back" class="w3-btn w3-white w3-border w3-round-large" title="Navigate to the previous bead (h)">
+                    <a id="btnBack" href="./Back" class="w3-btn w3-white w3-border w3-round-large" title="Navigate to the previous bead (h)">
                     << back </a>
                 </p></div>
                 <div class="w3-col s6 w3-center">
                     <p>
                         <!-- <a id="reset" href="./Reset" class="w3-btn w3-white w3-border w3-round-large" title="Reset back to the beginning"> Reset </a> -->
-                        <div class="w3-dropdown-hover">
-                            <button class="w3-button w3-border w3-round-large">Options</button>
-                            <div class="w3-dropdown-content w3-bar-block w3-round-large">
+                        <div class="w3-dropdown-click">
+                            <button onclick="toggleDropdown()" class="w3-button w3-border w3-round-large">Options</button>
+                            <div id="Menu" class="w3-dropdown-content w3-bar-block w3-round-large">
                                 <a id="Reset" href="./Reset" class="w3-button w3-bar-item w3-border w3-ios-deep-blue" title="Reset to the mystery of the day"> Reset </a>
                                 <a id="Joyful" href="./Joyful" class="w3-button w3-bar-item w3-border" title="Jump to the Joyful Mystery">Joyful Mystery</a>
                                 <a id="Luminous" href="./Luminous" class="w3-button w3-bar-item w3-border" title="Jump to the Luminous Mystery">Luminous Mystery</a>
@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <div class="w3-col s3 w3-center"><p>
-                    <a id="next" href="./Next" class="w3-btn w3-white w3-border w3-round-large" title="Navigate to the next bead (l)">Next >></a>
+                    <a id="btnNext" href="./Next" class="w3-btn w3-white w3-border w3-round-large" title="Navigate to the next bead (l)">Next >></a>
                 </p></div>
             </div>
 

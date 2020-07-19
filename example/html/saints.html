@@ -18,16 +18,32 @@
 
     <body>
         <div class="w3-container w3-ios-blue w3-center">
-            <h2>Go Rosary (Webserver Demo) Saints</h2>
-            <code>source:</code>
-            <a href="https://github.com/mezcel/struct-fmt" target="_blank">
-                <code>https://github.com/mezcel/struct-fmt</code>
-            </a>
-            <p>Commemorative saints of the day.</p>
-            <p>The saints list was web scraped from <a href="{{.SourceURL}}">{{.SourceURL}}</a></p>
+            <h2>Go Rosary (Webserver Demo)</h2>
+            <h3>Commemorative saints of the day.</h3>
+            
+            <div class="w3-row">
+                <div class="w3-col s6 w3-center">
+                    <code>source:</code>
+                    <a href="https://github.com/mezcel/struct-fmt" target="_blank">
+                        <code>https://github.com/mezcel/struct-fmt.git</code>
+                    </a>
+                </div>
+                <div class="w3-col s6 w3-center">  
+                    <code>web scrape:</code>
+                    <a href="{{.SourceURL}}" target="_blank">
+                        <code>{{.SourceURL}}</code>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <p id="Saints">{{.SaintsList}}</p>
+        <p id="Saints" class="w3-container">
+            {{.SaintsList}}
+        </p>
+
+        <p class="w3-container">
+            <a id="btnIndex" href="/" class="w3-button w3-border w3-round-large"><< Back To Rosary</a>
+        </p>
 
     </body>
 
