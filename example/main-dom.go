@@ -59,11 +59,13 @@ var (
 /* *** Text Readings Values *** */
 
 // UpdateDisplayStrings() will update global string vars
+// Just the roasary related variables
 func UpdateDisplayStrings() {
 
 	var idx int = textStructs.Position
 
 	// Query FKs
+
 	var decadeIdx int = RosaryBeads.RosaryBeads[idx].DecadeIndex
 	var mysteryIdx int = RosaryBeads.RosaryBeads[idx].MysteryIndex
 	var prayerIdx int = RosaryBeads.RosaryBeads[idx].PrayerIndex
@@ -83,7 +85,8 @@ func UpdateDisplayStrings() {
 	textStructs.MessageText = Messages.Messages[messageIdx].MesageText
 	textStructs.PrayerText = Prayers.Prayers[prayerIdx].PrayerText
 
-	// Intro and Outro Progress
+	// Intro and Outro Progress position flags
+
 	if textStructs.LoopBody == 0 {
 		if textStructs.MysteryPercent == 50 {
 			textStructs.SmallbeadPercent = 0
@@ -92,8 +95,6 @@ func UpdateDisplayStrings() {
 		}
 	}
 }
-
-/* *** Html Configurations *** */
 
 // Initial Page Load
 func IndexPage(w http.ResponseWriter, r *http.Request) {
@@ -247,7 +248,7 @@ func Saints(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Load saints.html
-	t, err := template.ParseFiles("html/saints.html") //parse the html file index.html
+	t, err := template.ParseFiles("html/saints.html") //parse the html file saints.html
 	if err != nil {                                   // if there is an error
 		log.Print("template parsing error: ", err) // log it
 	}
@@ -263,10 +264,10 @@ func Saints(w http.ResponseWriter, r *http.Request) {
 func GetDaySaints(url string) (string, error) {
 	var (
 		// List of saints string
-		saintsUl string = ""
+		saintsUl string
 
 		// both combined columns in table
-		cssPath string //= "html body div#page div#wrapper div#content div div.postentry div table ul"
+		cssPath string
 
 		// left col
 		cssPath1 string = "div > div:nth-child(1) > table:nth-child(2) > tbody > tr:nth-child(1) > td:nth-child(1) > ul > li > a"
@@ -289,27 +290,17 @@ func GetDaySaints(url string) (string, error) {
 
 	// Left Column list of saints
 	cssPath = cssPath1
-	var ret string
-	var e error
 	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
-		ret, e = s.Html()
-		saintsUl += "St. " + ret + ", "
-		//doc.Find("#pSaints").AppendHtml(ret)
+		saintsUl += "St. " + s.Text() + ", "
 	})
-
-	doc.Find("#Saints").AppendHtml(ret)
 
 	// Right column list of saints
 	cssPath = cssPath2
 	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
-		ret, e = s.Html()
-		saintsUl += "St. " + ret + ", "
-		//doc.Find("#pSaints").AppendHtml(ret)
+		saintsUl += "St. " + s.Text() + ", "
 	})
 
-	doc.Find("#Saints").AppendHtml(ret)
-
-	//doc.Find("#Saints").AppendHtml(ret)
+	saintsUl += "... pray for us."
 
 	return saintsUl, nil
 }

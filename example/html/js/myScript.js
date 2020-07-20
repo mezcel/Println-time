@@ -42,6 +42,14 @@ document.onkeyup = function(e){
             toggleDropdown();
             break;
         default:
-            console.log(keyPress);
+            console.log("keyPress:",keyPress);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Page loaded ...");
+    /*var btnMenu = document.getElementById( 'btnMenu' );
+    if (btnMenu) {
+        btnMenu.focus();
+    }*/
+});
