@@ -17,7 +17,7 @@ Use case demos using the ```struct-fmt``` package.
 cd example/
 
 ## Install prerequisites
-./install.sh
+./install-example.sh
 
 ## launch one of the following Go scripts
 go run main.go          ## Cli/Tui Rosary with mezcel/struct-fmt package

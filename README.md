@@ -10,8 +10,8 @@
 
 ### Use Case / Demonstration
 
-* [Demo README](example/README.md)
-    * [Terminal](https://asciinema.org/a/343751)
+* Demo [example/README.md](example/README.md)
+    * CLI Application [Terminal](https://asciinema.org/a/343751)
     * Web Server with Webpage [YouTube](https://www.youtube.com/watch?v=diSGGO_kDZ0)
     * Native desktop window UI
 * [Screenshots](example/screenshots/README.md)
