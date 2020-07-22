@@ -10,7 +10,7 @@ Use case demos using the ```struct-fmt``` package.
 
 ## Demos
 
-Prerequisite dependencies
+### Prerequisite dependencies
 
 ```sh
 
@@ -21,7 +21,7 @@ cd example/
 ./install-example.sh
 ```
 
-Launch runtime
+### Launch runtime
 
 ```sh
 ## Navigate into the repo's demo directory
