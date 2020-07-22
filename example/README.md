@@ -1,23 +1,31 @@
-# example use cases
+# Example (use case demos)
 
 Use case demos using the ```struct-fmt``` package.
 
 ## About
 
-* This is a cli scripture rosary app written in Go.
-* The rosary database is the same ```.json``` use in [python-curses]( http://github.com/mezcel/python-curses ).
-* The ```struct``` ER schema is similar to the one used in [printf-time]( http://github.com/mezcel/printf-time ).
+* Demonstration apps which use the struct-fmt Golang package.
 
 ---
 
-## Run Demos
+## Demos
+
+Prerequisite dependencies
 
 ```sh
+
 ## Navigate into the repo's demo directory
 cd example/
 
 ## Install prerequisites
 ./install-example.sh
+```
+
+Launch runtime
+
+```sh
+## Navigate into the repo's demo directory
+cd example/
 
 ## launch one of the following Go scripts
 go run main.go          ## Cli/Tui Rosary with mezcel/struct-fmt package
