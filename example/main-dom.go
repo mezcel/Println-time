@@ -28,14 +28,17 @@ import (
 	browser "github.com/pkg/browser"
 )
 
-// Global Vars used for UI text display
+// Global Vars used for DOM UI vars
 type ReadingsText struct {
+	// Text Readidings
 	DecadeName    string
 	MysteryName   string
 	ScriptureText string
 	MessageText   string
 	PrayerText    string
 
+	// Progress bar values
+	BeadType         string
 	Position         int
 	LoopBody         int
 	SmallbeadPercent int
@@ -71,6 +74,7 @@ func UpdateDisplayStrings() {
 
 	// Query FKs
 
+	var beadIdx int = RosaryBeads.RosaryBeads[idx].BeadIndex
 	var decadeIdx int = RosaryBeads.RosaryBeads[idx].DecadeIndex
 	var mysteryIdx int = RosaryBeads.RosaryBeads[idx].MysteryIndex
 	var prayerIdx int = RosaryBeads.RosaryBeads[idx].PrayerIndex
@@ -79,6 +83,7 @@ func UpdateDisplayStrings() {
 
 	// Query attribute strings
 
+	textStructs.BeadType = Beads.Beads[beadIdx].BeadType
 	textStructs.LoopBody = RosaryBeads.RosaryBeads[idx].LoopBody
 	textStructs.SmallbeadPercent = RosaryBeads.RosaryBeads[idx].SmallbeadPercent
 	textStructs.MysteryPercent = RosaryBeads.RosaryBeads[idx].MysteryPercent * 2

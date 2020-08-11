@@ -40,12 +40,12 @@
                             <a id="btnMenu" onclick="toggleDropdown()" class="w3-button w3-border w3-round-large" tabindex="0">Options</a>
 
                             <div id="Menu" class="w3-dropdown-content w3-bar-block w3-round-large">
-                                <a id="Reset" href="./Reset" class="w3-button w3-bar-item w3-border w3-ios-deep-blue" title="Reset to the mystery of the day" tabindex="1"> ⭐ Reset</a>
-                                <a id="Joyful" href="./Joyful" class="w3-button w3-bar-item w3-border w3-ios-dark-blue" title="Jump to the Joyful Mystery" tabindex="2"><img src="img/favicon.ico" height="16"> Joyful</a>
-                                <a id="Luminous" href="./Luminous" class="w3-button w3-bar-item w3-border w3-ios-dark-blue" title="Jump to the Luminous Mystery" tabindex="3"><img src="img/favicon.ico" height="16"> Luminous</a>
-                                <a id="Sorrowful" href="./Sorrowful" class="w3-button w3-bar-item w3-border w3-ios-dark-blue"  title="Jump to the Sorrowful Mystery" tabindex="4"><img src="img/favicon.ico" height="16"> Sorrowful</a>
-                                <a id="Glorious" href="./Glorious" class="w3-button w3-bar-item w3-border w3-ios-dark-blue" title="Jump to the Glorious Mystery" tabindex="5"><img src="img/favicon.ico" height="16"> Glorious</a>
-                                <a id="Saints" href="./Saints" class="w3-button w3-bar-item w3-border w3-ios-orange" title="Commemorative Saint of the Day" tabindex="6"> ⚜️ Saint's Day</a>
+                                <a id="Reset" href="./Reset" class="w3-button w3-bar-item w3-border w3-ios-dark-blue" title="Reset to the mystery of the day" tabindex="1"> ⭐ Reset</a>
+                                <a id="Joyful" href="./Joyful" class="w3-button w3-bar-item w3-border w3-ios-light-blue" title="Jump to the Joyful Mystery" tabindex="2"><img src="img/favicon.ico" height="16"> Joyful</a>
+                                <a id="Luminous" href="./Luminous" class="w3-button w3-bar-item w3-border w3-ios-light-blue" title="Jump to the Luminous Mystery" tabindex="3"><img src="img/favicon.ico" height="16"> Luminous</a>
+                                <a id="Sorrowful" href="./Sorrowful" class="w3-button w3-bar-item w3-border w3-ios-light-blue"  title="Jump to the Sorrowful Mystery" tabindex="4"><img src="img/favicon.ico" height="16"> Sorrowful</a>
+                                <a id="Glorious" href="./Glorious" class="w3-button w3-bar-item w3-border w3-ios-light-blue" title="Jump to the Glorious Mystery" tabindex="5"><img src="img/favicon.ico" height="16"> Glorious</a>
+                                <a id="Saints" href="./Saints" class="w3-button w3-bar-item w3-border w3-ios-deep-blue" title="Commemorative Saint of the Day" tabindex="6"> ⚜️ Saint's Day</a>
                             </div>
                         </div>
                     </p>
@@ -65,18 +65,21 @@
                     <div class="w3-col s10"><p>{{.MysteryName}}</p></div>
                 </div>
             </div>
+
             <div class="w3-panel w3-card">
                 <div class="w3-row">
                     <div class="w3-col s2 w3-center"><h4>Decade:</h4></div>
                     <div class="w3-col s10"><p>{{.DecadeName}}</p><i>{{.MessageText}}</i></div>
                 </div>
             </div>
+
             <div class="w3-panel w3-card w3-ios-background">
                 <div class="w3-row">
                     <div class="w3-col s2 w3-center"><h4>Scripture:</h4></div>
                     <div class="w3-col s10"><p>{{.ScriptureText}}</p></div>
                 </div>
             </div>
+
             <div class="w3-panel w3-card">
                 <div class="w3-row">
                     <div class="w3-col s2 w3-center"><h4>Prayer:</h4></div>
@@ -86,9 +89,13 @@
         </div>
         
         <!-- Footer -->
-        <div class="w3-container w3-bottom ">
+        <div class="w3-container w3-bottom">
+            <!-- Multimedia placeholder -->
+            <div class="w3-center">
+                <code>relevant multimedia could go here</code>
+            </div>
             <hr>
-            <h4>Segment:</h4>
+            <h4>Segment: ({{.BeadType}})</h4>
             <div class="w3-round w3-ios-light-grey">
                 <div class="w3-container w3-round w3-ios-blue w3-center" style="height:24px;width:{{.SmallbeadPercent}}0%">{{.SmallbeadPercent}}0%</div>
             </div>
