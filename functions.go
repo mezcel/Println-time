@@ -65,21 +65,21 @@ func ReturnStartPosition(weekdayNo int) int {
 	switch weekdayNo {
 	case 0: // Sunday
 		positionNo = 237
-		break
 	case 1: // Monday
+		fallthrough
 	case 5: // Friday
 		positionNo = 0
-		break
 	case 2: // Tuesday
+		fallthrough
 	case 6: // Saturday
 		positionNo = 158
-		break
 	case 3: // Wednesday
 		positionNo = 237
-		break
 	case 4: // Thursday
 		positionNo = 79
-		break
+	default:
+		positionNo = 0
+
 	}
 
 	return positionNo
