@@ -34,9 +34,9 @@ go run main-dom.go      ## Go Webserver web page
 ```
 ---
 
-## Screenshots (Outdated)
+## Screenshots ( Outdated )
 
-Gif rendered screenshots. These may not be the latest version.
+Gif screenshots and videos were taken earlier in the development time line. Small modifications have continued to be added.
 
 | main-ui.go (win10) | main-ui.go (GTK) | main-dom.go (Web Browser) [YouTube](https://www.youtube.com/watch?v=diSGGO_kDZ0) |
 |:---:|:---:|:---:|
