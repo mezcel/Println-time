@@ -301,16 +301,18 @@ func GetDaySaints(url string) (string, error) {
 	// Left Column list of saints
 	cssPath = cssPath1
 	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
-		saintsUl += "St. " + s.Text() + ", "
+		//saintsUl += "St. " + s.Text() + ", "
+		saintsUl += " [" + s.Text() + "] "
 	})
 
 	// Right column list of saints
 	cssPath = cssPath2
 	doc.Find(cssPath).Each(func(i int, s *goquery.Selection) {
-		saintsUl += "St. " + s.Text() + ", "
+		//saintsUl += "St. " + s.Text() + ", "
+		saintsUl += " [" + s.Text() + "] "
 	})
 
-	saintsUl += "... pray for us."
+	//saintsUl += "... pray for us."
 
 	return saintsUl, nil
 }
