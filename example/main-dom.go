@@ -25,7 +25,7 @@ import (
 
 	"html/template"
 	// launch web browser
-	browser "github.com/pkg/browser"
+	//browser "github.com/pkg/browser"
 )
 
 // Global Vars used for DOM UI vars
@@ -389,8 +389,8 @@ func main() {
 	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )\n")
 
 	// Auto launch demo on the native default web browser
-	const demoUrl = "http://localhost:8080"
-	browser.OpenURL(demoUrl)
+	//const demoUrl = "http://localhost:8080"
+	//browser.OpenURL(demoUrl)
 
 	// Listen on "http://localhost:8080"
 	log.Fatal(http.ListenAndServe(":8080", nil))
