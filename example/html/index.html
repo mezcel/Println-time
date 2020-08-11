@@ -84,12 +84,19 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Footer -->
-        <div class="w3-display-bottomright">
-            <div class="w3-container">
-                ( segment: <b>{{.SmallbeadPercent}}0%</b> ) ( total: <b>{{.MysteryPercent}}</b> of 50 )
+        <div class="w3-container w3-bottom ">
+            <hr>
+            <h4>Segment:</h4>
+            <div class="w3-round w3-ios-light-grey">
+                <div class="w3-container w3-round w3-ios-blue w3-center" style="height:24px;width:{{.SmallbeadPercent}}0%">{{.SmallbeadPercent}}0%</div>
             </div>
+            <h4>Total:</h4>
+            <div class="w3-round w3-ios-light-grey">
+                <div class="w3-round w3-ios-blue w3-center" style="height:24px;width:{{.MysteryPercent}}%">{{.MysteryPercent}}%</div>
+            </div>
+            <p></p>
         </div>
 
     </body>

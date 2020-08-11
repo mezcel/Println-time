@@ -17,10 +17,15 @@ import (
 	"log"
 	"net/http"
 
+	// web scraping
 	"github.com/PuerkitoBio/goquery"
+
+	// Rosary structs
 	structfmt "github.com/mezcel/struct-fmt"
 
 	"html/template"
+	// launch web browser
+	browser "github.com/pkg/browser"
 )
 
 // Global Vars used for UI text display
@@ -76,7 +81,7 @@ func UpdateDisplayStrings() {
 
 	textStructs.LoopBody = RosaryBeads.RosaryBeads[idx].LoopBody
 	textStructs.SmallbeadPercent = RosaryBeads.RosaryBeads[idx].SmallbeadPercent
-	textStructs.MysteryPercent = RosaryBeads.RosaryBeads[idx].MysteryPercent
+	textStructs.MysteryPercent = RosaryBeads.RosaryBeads[idx].MysteryPercent * 2
 
 	textStructs.DecadeName = Decades.Decades[decadeIdx].DecadeName
 
@@ -88,7 +93,7 @@ func UpdateDisplayStrings() {
 	// Intro and Outro Progress position flags
 
 	if textStructs.LoopBody == 0 {
-		if textStructs.MysteryPercent == 50 {
+		if RosaryBeads.RosaryBeads[idx].MysteryPercent == 50 {
 			textStructs.SmallbeadPercent = 0
 		} else {
 			textStructs.SmallbeadPercent = (textStructs.SmallbeadPercent * 10) / 7
@@ -377,5 +382,12 @@ func main() {
 	fmt.Println("\n\t- Go Server is running the main-dom.go app ...")
 	fmt.Println("\t- Open a web browser and navigate to \"localhost:8080\".")
 	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )\n")
+
+	// Auto launch demo on the native default web browser
+	const demoUrl = "http://localhost:8080"
+	browser.OpenURL(demoUrl)
+
+	// Listen on "http://localhost:8080"
 	log.Fatal(http.ListenAndServe(":8080", nil))
+
 }
