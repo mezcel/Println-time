@@ -19,7 +19,6 @@ import (
 
 	// web scraping
 	"github.com/PuerkitoBio/goquery"
-	"github.com/pkg/browser"
 
 	// Rosary structs
 	structfmt "github.com/mezcel/struct-fmt"
@@ -400,8 +399,8 @@ func main() {
 	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )\n")
 
 	// Auto launch demo on the native default web browser
-	const demoUrl = "http://localhost:8080"
-	browser.OpenURL(demoUrl)
+	//const demoUrl = "http://localhost:8080"
+	//browser.OpenURL(demoUrl)
 
 	// Listen on "http://localhost:8080"
 	log.Fatal(http.ListenAndServe(":8080", nil))
