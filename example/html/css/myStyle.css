@@ -1,0 +1,20 @@
+
+.footerProgress {
+    display: block;
+}
+
+.segmentProgress {
+    display: block;
+}
+
+@media (max-height: 650px) {
+    .segmentProgress {
+        display: none!important;
+    }
+}
+
+@media (max-height: 590px) {
+    .footerProgress {
+        display: none!important;
+    }
+}

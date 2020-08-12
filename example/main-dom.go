@@ -19,6 +19,7 @@ import (
 
 	// web scraping
 	"github.com/PuerkitoBio/goquery"
+	"github.com/pkg/browser"
 
 	// Rosary structs
 	structfmt "github.com/mezcel/struct-fmt"
@@ -289,13 +290,15 @@ func GetDaySaints(url string) (string, error) {
 	// Get the HTML
 	resp, err := http.Get(url)
 	if err != nil {
-		return "", err
+		//return "", err
+		return "Error retrieving the following url: " + url, err
 	}
 
 	// Convert HTML into goquery document
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		return "", err
+		//return "", err
+		return "Error parsing " + url + " scraped html into a goquery document.", err
 	}
 
 	// Left Column list of saints
@@ -330,6 +333,11 @@ func CssHandler(w http.ResponseWriter, r *http.Request) {
 // Style external resource: w3-colors-ios.css
 func CssHandler2(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/css/w3-colors-ios.css")
+}
+
+// Style external resource:mySytle.css
+func CssHandler3(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "html/css/myStyle.css")
 }
 
 // Script external resource
@@ -369,6 +377,7 @@ func main() {
 	// css
 	http.HandleFunc("/css/w3.css", CssHandler)
 	http.HandleFunc("/css/w3-colors-ios.css", CssHandler2)
+	http.HandleFunc("/css/myStyle.css", CssHandler3)
 
 	// js
 	http.HandleFunc("/js/myScript.js", JsHandler)
@@ -391,8 +400,8 @@ func main() {
 	fmt.Println("\n( From within this prompt,\n\tpress Ctrl-C to terminate server hosting. )\n")
 
 	// Auto launch demo on the native default web browser
-	//const demoUrl = "http://localhost:8080"
-	//browser.OpenURL(demoUrl)
+	const demoUrl = "http://localhost:8080"
+	browser.OpenURL(demoUrl)
 
 	// Listen on "http://localhost:8080"
 	log.Fatal(http.ListenAndServe(":8080", nil))

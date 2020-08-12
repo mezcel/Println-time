@@ -13,6 +13,7 @@
 
         <link rel="stylesheet" href="css/w3.css" />
         <link rel="stylesheet" href="css/w3-colors-ios.css" />
+        <link rel="stylesheet" href="css/myStyle.css" />
         <script src="js/myScript.js"></script>
     </head>
 
@@ -89,20 +90,26 @@
         </div>
         
         <!-- Footer -->
-        <div class="w3-container w3-bottom">
+        <div class="w3-container w3-bottom footerProgress">
             <!-- Multimedia placeholder -->
             <!-- <div class="w3-center">
                 <code>relevant multimedia could go here</code>
             </div> -->
             <hr>
-            <h4>Segment: ({{.BeadType}})</h4>
-            <div class="w3-round w3-ios-light-grey">
-                <div class="w3-container w3-round w3-ios-blue w3-center" style="height:24px;width:{{.SmallbeadPercent}}0%">{{.SmallbeadPercent}}0%</div>
+            <div class="segmentProgress">
+                <h4>Segment: ({{.BeadType}})</h4>
+                <div class="w3-round w3-ios-light-grey optional1">
+                    <div class="w3-container w3-round w3-ios-blue w3-center" style="height:24px;width:{{.SmallbeadPercent}}0%">{{.SmallbeadPercent}}0%</div>
+                </div>
             </div>
-            <h4>Total:</h4>
-            <div class="w3-round w3-ios-light-grey">
-                <div class="w3-round w3-ios-blue w3-center" style="height:24px;width:{{.MysteryPercent}}%">{{.MysteryPercent}}%</div>
+            
+            <div class="totalProgress">
+                <h4>Total: {{.MysteryName}}</h4>
+                <div class="w3-round w3-ios-light-grey">
+                    <div class="w3-round w3-ios-blue w3-center" style="height:24px;width:{{.MysteryPercent}}%">{{.MysteryPercent}}%</div>
+                </div>
             </div>
+
             <p></p>
         </div>
 
