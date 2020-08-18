@@ -1,6 +1,6 @@
 /*
 
-A json to struct conversion package.
+A package to facilitate importing a Scripture Rosary json database into a Golang struct ER schema.
 
 
 About
