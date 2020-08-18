@@ -3,9 +3,10 @@ file        : main.go
 dependencies: go get github.com/mezcel/struct-fmt
               go get github.com/nsf/termbox-go
 about:		: This is a CLI demonstration on using the json to struct feature,
-			  and basic navigation adnt initialization functions.
+			  and basic navigation and initialization functions.
 git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main.go
 */
+
 package main
 
 import (

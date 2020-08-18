@@ -6,6 +6,7 @@
 				: This website also features web scraping.
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main-dom.go
  * */
+
 package main
 
 import (
