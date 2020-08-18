@@ -1,6 +1,6 @@
 /* structs.go */
 
-// structs.go contains structs to be used in an ER schema. Database source data must be a json.
+// <u>structs.go</u> contains structs to be used in an ER schema. Database source data must be a json.
 package structfmt
 
 // ER Classes
