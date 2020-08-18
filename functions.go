@@ -1,5 +1,6 @@
 /* functions.go */
 
+// functions.go contains funcs to import a json file, clear screen, and basic query navigation.
 package structfmt
 
 import (

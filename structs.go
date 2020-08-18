@@ -1,5 +1,6 @@
 /* structs.go */
 
+// structs.go contains structs to be used in an ER schema. Database source data must be a json.
 package structfmt
 
 // ER Classes
@@ -85,7 +86,7 @@ type Decades struct {
 	Decades []Decade `json:"decade"`
 }
 
-// ER class: Go struct for the "mysterys" Json element Object array
+// ER class: Go struct for the "mysteries" Json element Object array
 type Mysterys struct {
 	Mysterys []Mystery `json:"mystery"`
 }
