@@ -2,10 +2,9 @@
  * file         : main-ui.go
  * dependencies : go get github.com/mezcel/struct-fmt
  *                go get github.com/andlabs/ui
- * about:       : Based on andlabs' drawtext.go example script
+ * about:       : This is a demo example using an OS's native desktop environment UI client.
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main-ui.go
  * */
-
 package main
 
 import (

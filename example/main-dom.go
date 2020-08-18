@@ -1,10 +1,11 @@
 /*
  * file         : main-dom.go
  * dependencies : go get github.com/mezcel/struct-fmt
- * about:       : Web browser dom web page hosed by go server
+				  go get github.com/PuerkitoBio/goquery
+ * about:       : This is a demo using a web server to host a web browser web page user interface.
+				: This website also features web scraping.
  * git:         : https://github.com/mezcel/struct-fmt/blob/master/example/main-dom.go
  * */
-
 package main
 
 import (
