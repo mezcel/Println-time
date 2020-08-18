@@ -1,7 +1,5 @@
 /*
 Example (use case demos)
-
-
 > Use case demos using the ```struct-fmt``` package.
 
 
@@ -12,33 +10,27 @@ About
 
 Demo scripts
 
-# Cli/Tui Rosary with mezcel/struct-fmt package
-
-```sh
-go run main.go
-```
-
-* This is a CLI demonstration on using the json to struct feature, and basic navigation and initialization functions.
+* Cli/Tui Rosary with mezcel/struct-fmt package
+	```sh
+	go run main.go
+	```
+> This is a CLI demonstration on using the json to struct feature, and basic navigation and initialization functions.
 
 ---
 
-# Gui Rosary with mezcel/struct-fmt & andlabs/ui package
-
-```sh
-go run main-ui.go
-```
-
-* This is a demo example using an OS's native desktop environment UI client.
+* Gui Rosary with mezcel/struct-fmt & andlabs/ui package
+	```sh
+	go run main-ui.go
+	```
+> This is a demo example using an OS's native desktop environment UI client.
 
 ---
 
-# Go Webserver web page
-
-```sh
-go run main-dom.go
-```
-
-* This is a demo using a web server to host a web browser web page user interface. This website also features web scraping.
+* Go Webserver web page
+	```sh
+	go run main-dom.go
+	```
+> This is a demo using a web server to host a web browser web page user interface. This website also features web scraping.
 
 */
 package main
