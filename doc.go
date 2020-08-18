@@ -46,5 +46,8 @@ Code Usage
     // or
     import structfmt "github.com/mezcel/struct-fmt"
     ```
+
+---
+
 */
 package structfmt
